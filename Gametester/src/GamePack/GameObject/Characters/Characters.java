@@ -8,7 +8,7 @@ import GamePack.Tiles.Tile;
 public abstract class Characters extends GameObject
 {
 	public static final int DEFAULT_HEALTH = 10;
-	public static final float DEFAULT_SPEED = 3.0f;
+	public static final float DEFAULT_SPEED = 5.0f;
 	public static final int DEFAULT_CHARACTER_WIDTH = 54;
 	public static final int DEFAULT_CHARACTER_HEIGHT = 54;
 	

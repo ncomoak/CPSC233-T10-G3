@@ -1,9 +1,11 @@
 package GamePack.World;
 
 import java.awt.Graphics;
+import java.io.IOException;
 
 import GamePack.Game;
 import GamePack.Handler;
+import GamePack.MazeAl.Maze;
 import GamePack.Tiles.Tile;
 import GamePack.utils.Utils;
 
@@ -12,12 +14,13 @@ public class World
 	private Handler handler;
 	private int width, height;
 	private int spawnX, spawnY;
-	private int[][] worldtiles;
+	private int[][] worldTiles;
 	
 	public World(Handler handler, String path)
 	{
 		this.handler = handler;
-		loadWorld(path);
+		//creates the world
+		loadWorld(path);	
 	}
 	
 	
@@ -34,6 +37,7 @@ public class World
 		int yStart = (int)Math.max(0, handler.getGameCamera().getyOffset()/ Tile.TILEHEIGHT);
 		int yEnd = (int)Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight())/ Tile.TILEHEIGHT + 1);
 		
+		//renders all the tiles 
 		for(int y = yStart; y < yEnd; y++)
 		{
 			for(int x = xStart; x < xEnd; x++)
@@ -46,20 +50,24 @@ public class World
 	
 	private void loadWorld(String path)
 	{
+		//gets the world file as a String 
 		String file = Utils.loadFileAsString(path);
+		//Splits the strings into an array list
 		String [] tokens = file.split("\\s+");
 		
+		//get the width, height, spawn X and y position
 		width = Utils.parseInt(tokens[0]);
 		height = Utils.parseInt(tokens[1]);
 		spawnX = Utils.parseInt(tokens[2]);
 		spawnY = Utils.parseInt(tokens[3]);
 		
-		worldtiles = new int [width][height];
+		//adds tiles to the worldtTiles array
+		worldTiles = new int [width][height];
 		for(int y = 0; y < height; y++)
 		{
 			for(int x = 0; x < width; x++)
 			{
-				worldtiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]); 
+				worldTiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]); 
 			}
 		}
 		
@@ -75,7 +83,7 @@ public class World
 			return Tile.grass;
 		}
 		
-		Tile t = Tile.tiles[worldtiles[x][y]];
+		Tile t = Tile.tiles[worldTiles[x][y]];
 		// if the tile is null returns dirt on default
 		if(t == null)
 		{

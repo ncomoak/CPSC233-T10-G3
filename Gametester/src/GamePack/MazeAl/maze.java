@@ -1,21 +1,23 @@
 package GamePack.MazeAl;
 
 import java.util.Random;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class Maze{
+public class Maze
+{
     int height;
     int width;
     ArrayList<ArrayList<MazeBlock>> mazeList;
-    public static void main(final String[] args){
-        Maze newMaze = new Maze(15,15);
-        newMaze.drawMaze();
-        ArrayList<MazeBlock> usedMazeBlocks = new ArrayList<>();
-        newMaze.recursiveMaze(0,0,usedMazeBlocks);
-        newMaze.drawMaze();
-    }
+    ArrayList<MazeBlock> usedMazeBlocks = new ArrayList<>();
+    
 
-    public Maze(final int height, final int width){
+    public Maze(final int height, final int width, String path) throws IOException{
+    	
         //Create 2D List. 
         ArrayList <ArrayList<MazeBlock>> mazeList = new ArrayList<>();
         for(int i = 0; i < height; i++){
@@ -25,14 +27,17 @@ public class Maze{
             }
         }
         //Create a border around the edge of the maze. 
-        
-
         this.height = height;
         this.width = width;
         this.mazeList = mazeList;
         
-
+        //The Generation and Drawing of the maze 
+        recursiveMaze(0, 0, usedMazeBlocks);
+        
+        //Your algorithm Seems to multiply By a factor of 5;
+        drawMaze(width * 5, height * 5, path);
     }
+    
     public void recursiveMaze(int currentHeight, int currentWidth, ArrayList<MazeBlock> usedMazeBlocks){
         Random random = new Random();
         ArrayList<String> possibleDirections = new ArrayList<>();
@@ -48,11 +53,11 @@ public class Maze{
             if(currentWidth != 0 && !usedMazeBlocks.contains(mazeList.get(currentHeight).get(currentWidth - 1))){
                 possibleDirections.add("West");
             }
-            if(currentWidth < mazeList.get(0).size() - 1 && !usedMazeBlocks.contains(mazeList.get(currentHeight).get(currentWidth + 1))){
+            if(currentWidth < mazeList.get(0).size() - 1 && !usedMazeBlocks.contains(mazeList.get(currentHeight).get(currentWidth + 1))) {
                 possibleDirections.add("East");
             }
             if(possibleDirections.size() == 0){
-                if(usedMazeBlocks.size() > width*height){
+                if(usedMazeBlocks.size() > width*height) {
                     allBrokenPaths = true;
                 }
                 else{
@@ -95,47 +100,59 @@ public class Maze{
         }
     }
     
-    public void drawMaze(){
-        //Draws maze (Text based.)
-        System.out.println("");
+    public void drawMaze(int width, int height, String path) throws IOException{
+    	
+    	String firstLine = width + " " + height;
+    	String secondLine = "\n" + 100 + " " + 100;
+    	
+    	BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+    	
+    	// The width and height of the maze 
+    	writer.write(firstLine);
+    	writer.write(secondLine);
+    	
+    	
+        //Draws maze (Text based.) -> Goes to res/World(Folder)
         for(int i = 0; i < mazeList.get(0).size();i++){
-            System.out.println("");
+        	writer.write("\n");
             for(int j = 0; j < mazeList.size(); j++){
                 if(mazeList.get(i).get(j).north){
-                    System.out.print("1");
+                	writer.write("2 2 2 2 2 ");
                 }
-                else{
-                    System.out.print("2");
+                else
+                {
+                	writer.write("2 1 1 1 2 ");
                 }
             }
             for(int k = 0; k < 3; k++){
-                System.out.println("");
+            	writer.write("\n");
                 for(int j = 0; j < mazeList.size();j++){
                     if(mazeList.get(i).get(j).west && mazeList.get(i).get(j).east){
-                        System.out.print("2");
+                    	writer.write("2 1 1 1 2 ");
                     }
                     else if(mazeList.get(i).get(j).west){
-                        System.out.print("2");
+                    	writer.write("2 1 1 1 1 ");
                     }
                     else if(mazeList.get(i).get(j).east){
-                        System.out.print("2");
+                    	writer.write("1 1 1 1 2 ");
                     }
                     else{
-                        System.out.print("2");
+                    	writer.write("1 1 1 1 1 ");
                     }
                     
                 }
             }
-            System.out.println("");
+            writer.write("\n");
             for(int j = 0; j < mazeList.size(); j++){
                 if(mazeList.get(i).get(j).south){
-                    System.out.print("1");
+                	writer.write("2 2 2 2 2 ");
                 }
                 else{
-                    System.out.print("2");
+                	writer.write("2 1 1 1 2 ");
                 }
             }
         }
-        System.out.println("");
+        writer.write("\n");
+        writer.close();
     }
 }

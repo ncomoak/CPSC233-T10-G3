@@ -2,7 +2,7 @@ package GamePack;
 
 import java.awt.*;
 import javax.swing.JFrame;
-
+// This Class creates the window
 public class Display 
 {
 	private JFrame frame;
@@ -19,7 +19,7 @@ public class Display
 		
 		createDisplay();
 	}
-	
+	//Creating new window
 	private void createDisplay() 
 	{
 		frame = new JFrame(title);
@@ -39,6 +39,8 @@ public class Display
 		frame.pack();
 	}
 	
+	
+	//Getters and Setters
 	public Canvas getCanvas()
 	{
 		return canvas;	
