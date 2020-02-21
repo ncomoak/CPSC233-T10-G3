@@ -2,6 +2,10 @@ package GamePack.States;
 
 import java.awt.Graphics;
 
+<<<<<<< Updated upstream
+=======
+import GamePack.Game;
+>>>>>>> Stashed changes
 import GamePack.Handler;
 
 //an abstract Sate class

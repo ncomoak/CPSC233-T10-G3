@@ -1,7 +1,15 @@
 package GamePack.World;
 
 import java.awt.Graphics;
+<<<<<<< Updated upstream
 import GamePack.Handler;
+=======
+import java.io.IOException;
+
+import GamePack.Game;
+import GamePack.Handler;
+import GamePack.MazeAl.Maze;
+>>>>>>> Stashed changes
 import GamePack.Tiles.Tile;
 import GamePack.utils.Utils;
 

@@ -3,6 +3,10 @@ package GamePack.GameObject;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+<<<<<<< Updated upstream
+=======
+import GamePack.Game;
+>>>>>>> Stashed changes
 import GamePack.Handler;
 // An abstract GameObject in which all entities of the game will inherit. 
 public abstract class GameObject 
