@@ -1,11 +1,7 @@
 package GamePack.World;
 
 import java.awt.Graphics;
-import java.io.IOException;
-
-import GamePack.Game;
 import GamePack.Handler;
-import GamePack.MazeAl.Maze;
 import GamePack.Tiles.Tile;
 import GamePack.utils.Utils;
 

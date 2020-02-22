@@ -3,13 +3,10 @@ package GamePack.States;
 import java.awt.Graphics;
 import java.io.IOException;
 
-import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.Characters.Player;
 import GamePack.MazeAl.Maze;
-import GamePack.Tiles.Tile;
 import GamePack.World.World;
-import GamePack.gfx.Assests;
 
 // this is the state where the gameplay will happen
 public class GameState extends State

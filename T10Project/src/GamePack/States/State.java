@@ -2,7 +2,6 @@ package GamePack.States;
 
 import java.awt.Graphics;
 
-import GamePack.Game;
 import GamePack.Handler;
 
 //an abstract Sate class
