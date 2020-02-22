@@ -2,13 +2,9 @@ package GamePack.GameObject.Characters;
 
 import java.awt.Graphics;
 
-<<<<<<< Updated upstream
-import GamePack.Handler;
-=======
 import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.GameObject;
->>>>>>> Stashed changes
 import GamePack.gfx.Assests;
 
 // The Player

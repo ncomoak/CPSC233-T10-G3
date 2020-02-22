@@ -1,9 +1,6 @@
 package GamePack.gfx;
 
-<<<<<<< Updated upstream
-=======
 import GamePack.Game;
->>>>>>> Stashed changes
 import GamePack.Handler;
 import GamePack.GameObject.GameObject;
 import GamePack.Tiles.Tile;

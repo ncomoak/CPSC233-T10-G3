@@ -13,11 +13,7 @@ public class Assests
 	{
 		player = ImageLoader.loadImage("/textures/LC2.png");
 		grass =  ImageLoader.loadImage("/textures/grass.jpg");
-<<<<<<< Updated upstream
-		dirt =  ImageLoader.loadImage("/textures/Dirt.png");
-=======
 		dirt =  ImageLoader.loadImage("/textures/dirt.png");
->>>>>>> Stashed changes
 		rock =  ImageLoader.loadImage("/textures/rock.jpg");
 	}
 }

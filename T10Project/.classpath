@@ -6,10 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< Updated upstream
 	<classpathentry kind="lib" path="res"/>
-=======
-	<classpathentry kind="lib" path="/Gametester/res"/>
->>>>>>> Stashed changes
 	<classpathentry kind="output" path="bin"/>
 </classpath>
