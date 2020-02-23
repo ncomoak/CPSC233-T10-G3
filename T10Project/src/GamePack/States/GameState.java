@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import GamePack.Handler;
 import GamePack.GameObject.Characters.Player;
-import GamePack.MazeAl.Maze;
+import GamePack.MazeAi.Maze;
 import GamePack.World.World;
 
 // this is the state where the gameplay will happen

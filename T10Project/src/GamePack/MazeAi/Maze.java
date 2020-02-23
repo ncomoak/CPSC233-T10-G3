@@ -1,4 +1,4 @@
-package GamePack.MazeAl;
+package GamePack.MazeAi;
 
 import java.util.Random;
 import java.io.BufferedWriter;
