@@ -1,6 +1,5 @@
 package GamePack.gfx;
 
-import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.GameObject;
 import GamePack.Tiles.Tile;
