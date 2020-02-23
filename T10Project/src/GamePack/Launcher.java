@@ -1,10 +1,6 @@
 package GamePack;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import GamePack.MazeAi.Maze;
-import GamePack.MazeAi.MazeBlock;
 
 //Launches the game 
 public class Launcher 
