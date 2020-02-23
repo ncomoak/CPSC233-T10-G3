@@ -2,14 +2,11 @@ package GamePack;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-
 import GamePack.Input.KeyManger;
 import GamePack.States.GameState;
 import GamePack.States.State;
 import GamePack.gfx.Assests;
 import GamePack.gfx.GameCamera;
-import GamePack.gfx.ImageLoader;
 
 // The main Game Class
 public class Game implements Runnable 

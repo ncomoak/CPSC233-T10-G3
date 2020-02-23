@@ -2,9 +2,7 @@ package GamePack.GameObject.Characters;
 
 import java.awt.Graphics;
 
-import GamePack.Game;
 import GamePack.Handler;
-import GamePack.GameObject.GameObject;
 import GamePack.gfx.Assests;
 
 // The Player

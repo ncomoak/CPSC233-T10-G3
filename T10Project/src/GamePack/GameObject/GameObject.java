@@ -3,7 +3,6 @@ package GamePack.GameObject;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import GamePack.Game;
 import GamePack.Handler;
 // An abstract GameObject in which all entities of the game will inherit. 
 public abstract class GameObject 
