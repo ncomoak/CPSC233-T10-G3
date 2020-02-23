@@ -1,4 +1,4 @@
-package GamePack.MazeAl;
+package GamePack.MazeAi;
 
 public class MazeBlock{
     boolean north;
