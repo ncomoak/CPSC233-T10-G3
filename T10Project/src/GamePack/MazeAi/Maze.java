@@ -11,10 +11,10 @@ public class Maze
     int height;
     int width;
     ArrayList<ArrayList<MazeBlock>> mazeList;
-    ArrayList<MazeBlock> usedMazeBlocks = new ArrayList<>();
     
 
-    public Maze(final int height, final int width, String path) throws IOException{
+    public Maze(final int height, final int width, String path) throws IOException
+    {
     	
         //Create 2D List. 
         ArrayList <ArrayList<MazeBlock>> mazeList = new ArrayList<>();
@@ -30,36 +30,49 @@ public class Maze
         this.mazeList = mazeList;
         
         //The Generation and Drawing of the maze 
-        recursiveMaze(0, 0, usedMazeBlocks);
+        recursiveMaze();
         
         //Your algorithm Seems to multiply By a factor of 5;
         drawMaze(width * 5, height * 5, path);
     }
     
-    public void recursiveMaze(int currentHeight, int currentWidth, ArrayList<MazeBlock> usedMazeBlocks){
-        Random random = new Random();
+    public void recursiveMaze()
+    {
+    	int currentHeight = 0;
+        int currentWidth = 0;
+        ArrayList<MazeBlock> usedMazeBlocks = new ArrayList<>();
+        Random random = new Random();//Creates an instance of the Random Class so that we can use it to generate random numbers below. 
         ArrayList<String> possibleDirections = new ArrayList<>();
         boolean allBrokenPaths = false;
-        while(!allBrokenPaths){
-            possibleDirections = new ArrayList<String>();
-            if(currentHeight != 0 && !usedMazeBlocks.contains(mazeList.get(currentHeight - 1).get(currentWidth))){
+        while(!allBrokenPaths){//Loops until each tile has an entry/exit point. 
+            for(int j = 0; j < usedMazeBlocks.size(); j++){//makes sure there isn't duplicate maze blocks in usedMazeBlocks. 
+                for(int k = 0; k < usedMazeBlocks.size();k++){
+                    if(k != j && usedMazeBlocks.get(j) == usedMazeBlocks.get(k)){
+                        usedMazeBlocks.remove(k);
+                        break;
+                    }
+                }
+                
+            }
+            possibleDirections = new ArrayList<String>();//Figures out which way we can go from any given mazeblock. 
+            if(currentHeight != 0 && !checkForMazeBlock(currentWidth, currentHeight - 1, usedMazeBlocks)){
                 possibleDirections.add("North");
             }
-            if(currentHeight < mazeList.size() - 1&& !usedMazeBlocks.contains(mazeList.get(currentHeight + 1).get(currentWidth))){
+            if(currentHeight < mazeList.size() - 1&& !checkForMazeBlock(currentWidth, currentHeight+ 1, usedMazeBlocks)){
                 possibleDirections.add("South");
             }
-            if(currentWidth != 0 && !usedMazeBlocks.contains(mazeList.get(currentHeight).get(currentWidth - 1))){
+            if(currentWidth != 0 && !checkForMazeBlock(currentWidth - 1, currentHeight, usedMazeBlocks)){
                 possibleDirections.add("West");
             }
-            if(currentWidth < mazeList.get(0).size() - 1 && !usedMazeBlocks.contains(mazeList.get(currentHeight).get(currentWidth + 1))) {
+            if(currentWidth < mazeList.get(0).size() - 1 && !checkForMazeBlock(currentWidth + 1, currentHeight, usedMazeBlocks)){
                 possibleDirections.add("East");
             }
-            if(possibleDirections.size() == 0){
-                if(usedMazeBlocks.size() > width*height) {
+            if(possibleDirections.size() == 0){//If there are no possible directions, and all tiles have a passage going in or out, the loop ends. 
+                if(usedMazeBlocks.size() == width*height){
                     allBrokenPaths = true;
                 }
                 else{
-                    MazeBlock lastMazeBlock = usedMazeBlocks.get(usedMazeBlocks.size() - 1);
+                    MazeBlock lastMazeBlock = usedMazeBlocks.get(usedMazeBlocks.size() - 1);//If there are still tiles left, we go to the last mazeBlock and see if there are any driections to go there
                     usedMazeBlocks.remove(usedMazeBlocks.size() - 1);
                     usedMazeBlocks.add(0, lastMazeBlock);
                     usedMazeBlocks.add(0, mazeList.get(currentHeight).get(currentWidth));
@@ -68,31 +81,27 @@ public class Maze
                 }
             }
             else{
-                usedMazeBlocks.add(mazeList.get(currentHeight).get(currentWidth));
+                usedMazeBlocks.add(mazeList.get(currentHeight).get(currentWidth));//If there are ways we can go, we pick a random number for each direction and go in that direction
                 int direction = random.nextInt(possibleDirections.size());
                 if(possibleDirections.get(direction).equals("North")){
                     mazeList.get(currentHeight).get(currentWidth).north = false;
                     mazeList.get(currentHeight - 1).get(currentWidth).south = false;
                     currentHeight -=1;
-            //return recursiveMaze(currentHeight - 1, currentWidth, usedMazeBlocks);
                 }
                 if(possibleDirections.get(direction).equals("South")){
                     mazeList.get(currentHeight).get(currentWidth).south = false;
                     mazeList.get(currentHeight + 1).get(currentWidth).north = false;
                     currentHeight+=1;
-                    //return recursiveMaze(currentHeight + 1, currentWidth, usedMazeBlocks);
                 }
                 if(possibleDirections.get(direction).equals("East")){
                     mazeList.get(currentHeight).get(currentWidth).east = false;
                     mazeList.get(currentHeight).get(currentWidth + 1).west = false;
                     currentWidth+=1;
-                    //return recursiveMaze(currentHeight, currentWidth + 1, usedMazeBlocks);
                 }
                 if(possibleDirections.get(direction).equals("West")){
                     mazeList.get(currentHeight).get(currentWidth).west = false;
                     mazeList.get(currentHeight).get(currentWidth - 1).east = false;
                     currentWidth-=1;
-                    //return recursiveMaze(currentHeight, currentWidth - 1, usedMazeBlocks);
                 }
             }
         }
@@ -152,5 +161,14 @@ public class Maze
         }
         writer.write("\n");
         writer.close();
+    }
+    
+    private static boolean checkForMazeBlock(int xCoord, int yCoord, ArrayList<MazeBlock> mazeBlockList){//Checks to see if a mazeBlock with the right xCoor and yCoord are in a list of mazeBlocks. 
+        for(int i = 0; i < mazeBlockList.size(); i++){
+            if(mazeBlockList.get(i).xCoord == xCoord && mazeBlockList.get(i).yCoord == yCoord){
+                return true;
+            }
+        }
+        return false;
     }
 }
