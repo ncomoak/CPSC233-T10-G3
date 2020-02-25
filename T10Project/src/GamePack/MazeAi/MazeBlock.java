@@ -9,7 +9,8 @@ public class MazeBlock{
     int xCoord;
     int yCoord;
 
-    public MazeBlock(int xCoord, int yCoord){
+    public MazeBlock(int xCoord, int yCoord)
+    {
         this.north = true;
         this.east = true;
         this.west = true;
@@ -17,6 +18,5 @@ public class MazeBlock{
         this.fourWalls = true;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
-
     }
 }

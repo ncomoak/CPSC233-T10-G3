@@ -15,7 +15,6 @@ public class Maze
 
     public Maze(final int height, final int width, String path) throws IOException
     {
-    	
         //Create 2D List. 
         ArrayList <ArrayList<MazeBlock>> mazeList = new ArrayList<>();
         for(int i = 0; i < height; i++){

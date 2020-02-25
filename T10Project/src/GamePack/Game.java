@@ -18,7 +18,7 @@ public class Game implements Runnable
 	
 	//Graphics and rendering 
 	private Thread thread;
-	private boolean running = false;
+	private boolean gameIsRunning = false;
 	private BufferStrategy bs;
 	private Graphics g;
 	
@@ -109,10 +109,11 @@ public class Game implements Runnable
 	//GameLoop
 	public void run() 
 	{
-		int fps = 60;
-		double timepertick = 1000000000/fps; 
-		double delta = 0; 
-		long now;
+		int NANO_SECONDS = 1000000000;
+		int FramesPerSecond = 60;
+		double maxTimePerTick = NANO_SECONDS/FramesPerSecond; 
+		double changeInTime = 0; 
+		long currentTime;
 		long lastTime = System.nanoTime();
 		
 		//initializing the all variables 
@@ -121,27 +122,30 @@ public class Game implements Runnable
 		long timer = 0;
 		int ticks = 0;
 		
+		
 		//The main Game Loop
-		while (running) 
+		while (gameIsRunning) 
 		{
 			//Checks if a frame has passed 
-			now = System.nanoTime();
-			delta += (now - lastTime)/timepertick;
-			timer +=now - lastTime;
-			lastTime = now;
+			currentTime = System.nanoTime();
+			changeInTime += (currentTime - lastTime)/maxTimePerTick;	
+			timer +=currentTime - lastTime;
+			lastTime = currentTime;
 			
-			if(delta >= 1) 
+			if(changeInTime >= 1) 
 			{
 				//Calls the tick and render method each frame 
 				tick();
 				render();
 				
 				ticks++;
-				delta--;
+				changeInTime--;
 			}
-			if(timer >= 1000000000) 
+			
+			// For printing the frames per second 
+			if(timer >= NANO_SECONDS) 
 			{
-				//System.out.println("fps: " + ticks);
+				//System.out.println("FPS: " + ticks);
 				ticks = 0;
 				timer = 0;
 			}
@@ -151,27 +155,27 @@ public class Game implements Runnable
 	}
 	
 	
-	//Starting and Stopping of  a new Thread
+	//Starting and Stopping of a new Thread
 	public synchronized void start()
 	{
-		if(running) 
+		if(gameIsRunning) 
 		{
 			return;
 		}
 		
-		running = true;
+		gameIsRunning = true;
 		thread = new Thread(this);
 		thread.start();
 	}
 	
 	public synchronized void stop()
 	{
-		if(!running) 
+		if(!gameIsRunning) 
 		{
 			return;
 		}
 		
-		running = false;
+		gameIsRunning = false;
 		try 
 		{
 			thread.join();
