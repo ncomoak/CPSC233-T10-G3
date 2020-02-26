@@ -38,31 +38,31 @@ public class Player extends Characters
 	//gets the KeyBoard input and decides if the play should move.
 	private void getInput()
 	{
-		xMove = 0;
-		yMove = 0;
+		xMoveAmount = 0;
+		yMoveAmount = 0;
 		
 		//Move up
 		if(handler.getKeyManger().up)
 		{
-			yMove = -speed; 
+			yMoveAmount = -speed; 
 		}
 		
 		//Move down
 		if(handler.getKeyManger().down)
 		{
-			yMove = speed; 
+			yMoveAmount = speed; 
 		}
 		
 		//Move Left
 		if(handler.getKeyManger().left)
 		{
-			xMove = -speed; 
+			xMoveAmount = -speed; 
 		}
 		
 		//Move Right
 		if(handler.getKeyManger().right)
 		{
-			xMove = speed; 
+			xMoveAmount = speed; 
 		}
 	}
 	

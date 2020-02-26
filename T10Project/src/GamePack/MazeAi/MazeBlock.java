@@ -1,13 +1,13 @@
 package GamePack.MazeAi;
 
 public class MazeBlock{
-    boolean north;
-    boolean east;
-    boolean west;
-    boolean south;
-    boolean fourWalls;
-    int xCoord;
-    int yCoord;
+    public boolean north;
+    public boolean east;
+    public boolean west;
+    public boolean south;
+    public boolean fourWalls;
+    public int xCoord;
+    public int yCoord;
 
     public MazeBlock(int xCoord, int yCoord)
     {
