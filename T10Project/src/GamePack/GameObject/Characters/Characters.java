@@ -13,7 +13,7 @@ public abstract class Characters extends GameObject
 	
 	protected int health;
 	protected float speed;
-	protected float xMove, yMove;	
+	protected float xMoveAmount, yMoveAmount;	
 	
 
 	public Characters(Handler handler,float x, float y, int width, int height) 
@@ -21,8 +21,8 @@ public abstract class Characters extends GameObject
 		super(handler,x, y, width, height);
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
-		xMove = 0;
-		yMove = 0;
+		xMoveAmount = 0;
+		yMoveAmount = 0;
 	}
 	
 	//Methods
@@ -36,14 +36,14 @@ public abstract class Characters extends GameObject
 	
 	public void moveX() 
 	{
-		if(xMove > 0) //moving right
+		if(xMoveAmount > 0) //moving right
 		{
 			//Checks for collision in the upper and lower right hand side of the bounds  
-			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
+			int tx = (int) (x + xMoveAmount + bounds.x + bounds.width) / Tile.TILEWIDTH;
 			if(!collionWithTile(tx, (int)(y + bounds.y) / Tile.TILEHEIGHT) && !collionWithTile(tx, (int)(y + bounds.y + bounds.height) / Tile.TILEHEIGHT))
 			{
 				//Moves the Character right
-				x += xMove;
+				x += xMoveAmount;
 			}
 			else
 			{
@@ -51,14 +51,14 @@ public abstract class Characters extends GameObject
 				x = tx * Tile.TILEWIDTH - bounds.x - bounds.width - 1;
 			}
 		}
-		else if(xMove < 0)//moving left
+		else if(xMoveAmount < 0)//moving left
 		{
 			//Checks for collision in the upper and lower left hand side of the bounds 
-			int tx = (int) (x + xMove + bounds.x) / Tile.TILEWIDTH;
+			int tx = (int) (x + xMoveAmount + bounds.x) / Tile.TILEWIDTH;
 			if(!collionWithTile(tx, (int)(y + bounds.y) / Tile.TILEHEIGHT) && !collionWithTile(tx, (int)(y + bounds.y + bounds.height) / Tile.TILEHEIGHT))
 			{
 				//Moves the Character left
-				x += xMove;
+				x += xMoveAmount;
 			}
 			else
 			{
@@ -69,14 +69,14 @@ public abstract class Characters extends GameObject
 	}
 	public void moveY() 
 	{
-		if(yMove < 0) //moving up
+		if(yMoveAmount < 0) //moving up
 		{
 			//Checks for collision in the left and right top side of the bounds 
-			int ty = (int) (y + yMove + bounds.y) / Tile.TILEHEIGHT;
+			int ty = (int) (y + yMoveAmount + bounds.y) / Tile.TILEHEIGHT;
 			if(!collionWithTile((int)(x + bounds.x) / Tile.TILEWIDTH, ty) && !collionWithTile((int)(x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty))
 			{
 				//Moves the Character up
-				y += yMove;
+				y += yMoveAmount;
 			}
 			else
 			{
@@ -84,14 +84,14 @@ public abstract class Characters extends GameObject
 				y = ty * Tile.TILEHEIGHT  + Tile.TILEHEIGHT - bounds.y;
 			}
 		}
-		else if(yMove > 0)//moving down
+		else if(yMoveAmount > 0)//moving down
 		{
 			//Checks for collision in the left and right Bottom side of the bounds 
-			int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
+			int ty = (int) (y + yMoveAmount + bounds.y + bounds.height) / Tile.TILEHEIGHT;
 			if(!collionWithTile((int)(x + bounds.x) / Tile.TILEWIDTH, ty) && !collionWithTile((int)(x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty))
 			{
 				//Moves the Character down
-				y += yMove;
+				y += yMoveAmount;
 			}
 			else
 			{
@@ -131,20 +131,20 @@ public abstract class Characters extends GameObject
 
 	public float getxMove() 
 	{
-		return xMove;
+		return xMoveAmount;
 	}
-	public void setxMove(float xMove) 
+	public void setxMove(float xMoveAmount) 
 	{
-		this.xMove = xMove;
+		this.xMoveAmount = xMoveAmount;
 	}
 
 
 	public float getyMove() 
 	{
-		return yMove;
+		return yMoveAmount;
 	}
-	public void setyMove(float yMove) 
+	public void setyMove(float yMoveAmount) 
 	{
-		this.yMove = yMove;
+		this.yMoveAmount = yMoveAmount;
 	}
 }
