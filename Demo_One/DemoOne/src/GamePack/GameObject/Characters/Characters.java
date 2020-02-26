@@ -8,8 +8,8 @@ public abstract class Characters extends GameObject
 {
 	public static final int DEFAULT_HEALTH = 10;
 	public static final float DEFAULT_SPEED = 5.0f;
-	public static final int DEFAULT_CHARACTER_WIDTH = 54;
-	public static final int DEFAULT_CHARACTER_HEIGHT = 54;
+	public static final int DEFAULT_CHARACTER_WIDTH = 43*2;
+	public static final int DEFAULT_CHARACTER_HEIGHT = 58*2;
 	
 	protected int health;
 	protected float speed;

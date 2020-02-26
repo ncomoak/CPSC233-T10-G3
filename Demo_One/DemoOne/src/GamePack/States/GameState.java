@@ -25,7 +25,6 @@ public class GameState extends State
 		String MazeDataPath =  "res/Worlds/MazeData.txt";
 		try
 		{
-			
 			Maze maze = new Maze(mazeWidth, mazeHeight, MazeDataPath);
 		} catch (IOException e) 
 		{

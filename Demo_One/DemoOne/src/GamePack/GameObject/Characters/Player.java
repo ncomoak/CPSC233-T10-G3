@@ -13,10 +13,10 @@ public class Player extends Characters
 	{
 		super(handler, x, y, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
 		
-		bounds.x = 0;
-		bounds.y = 0;
-		bounds.width = 50;
-		bounds.height = 50;
+		bounds.x =  0;
+		bounds.y =  0;
+		bounds.width = Characters.DEFAULT_CHARACTER_WIDTH  - 20;
+		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT - 20;
 	}
 
 	//Tick and render Methods
