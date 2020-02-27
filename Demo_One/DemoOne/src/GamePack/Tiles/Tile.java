@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Tile 
 {
-
+	
 	//all Tiles in the game 
 	public static Tile[] tiles= new Tile[256];
 	public static Tile grass = new grassTile(0);
