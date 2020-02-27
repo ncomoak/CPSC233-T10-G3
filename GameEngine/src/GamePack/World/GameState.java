@@ -1,51 +1,59 @@
 package GamePack.World;
 
-import java.awt.Graphics;
-import GamePack.Handler;
+import java.io.IOException;
+
+import GamePack.Input.KeyManger;
+import GamePack.MazeAi.*;
 import GamePack.Tiles.Tile;
 import GamePack.utils.Utils;
 
-public class World 
+public class GameState 
 {
-	private Handler handler;
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] worldTiles;
 	
-	public World(Handler handler, String path)
+	private int mazeWidth = 5;
+	private int mazeHeight = 5;
+	
+	private MazeGeneration mazeGeneration;
+	
+	private KeyManger keyManger;
+
+	private String player = "0";
+	
+	public GameState(String path)
 	{
-		this.handler = handler;
-		//creates the world
-		loadWorld(path);	
+		loadWorld(path);
+		keyManger = new KeyManger();
 	}
 	
 	
 	//Tick and render Method
 	public void tick()
 	{
-		
+		keyManger.tick();
 	}
 	
-	public void render(Graphics g)
-	{
-		int xStart = (int)Math.max(0, handler.getGameCamera().getxOffset()/ Tile.TILEWIDTH);
-		int xEnd =  (int)Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth())/ Tile.TILEWIDTH + 1);
-		int yStart = (int)Math.max(0, handler.getGameCamera().getyOffset()/ Tile.TILEHEIGHT);
-		int yEnd = (int)Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight())/ Tile.TILEHEIGHT + 1);
-		
-		//renders all the tiles 
-		for(int y = yStart; y < yEnd; y++)
+	public void render()
+	{	
+		// render out the world and player movement 
+		for(int i = 0; i<width; i++)
 		{
-			for(int x = xStart; x < xEnd; x++)
-			{
-				getTile(x, y).render(g, (int)(x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
-			}
+		    for(int j = 0; j<height; j++)
+		    {
+		        System.out.print(worldTiles[i][j]);
+		    }
+		    System.out.println();
 		}
 	}
 		
 	
 	private void loadWorld(String path)
 	{
+		//creates the maze 
+		mazeGeneration = new MazeGeneration(path, mazeWidth, mazeHeight);
+		
 		//gets the world file as a String 
 		String file = Utils.loadFileAsString(path);
 		//Splits the strings into an array list
@@ -66,7 +74,6 @@ public class World
 				worldTiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]); 
 			}
 		}
-		
 	}
 	
 	

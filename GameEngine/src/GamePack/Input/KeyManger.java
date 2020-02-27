@@ -1,45 +1,52 @@
 package GamePack.Input;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.util.Scanner;
 
 //checks if a certain key has been pressed
-public class KeyManger implements KeyListener
+public class KeyManger 
 {
-	//list of keys
-	private boolean[] keys;
-
-	public boolean up,down, left,right;
+	String input = "";
+	
+	public boolean up,down,left,right;
+	
+	private String UP_KEY = "w";
+	private String DOWN_KEY = "s";
+	private String LEFT_KEY = "a";
+	private String RIGHT_KEY = "d";
 	
 	public void tick() 
 	{
-		//set to true if any of these keys have been press 
-		up = keys[KeyEvent.VK_W];
-		left = keys[KeyEvent.VK_A];
-		right = keys[KeyEvent.VK_D];
-		down = keys[KeyEvent.VK_S];
-	}
-	
-	public KeyManger ()
-	{
-		//Initializes the array of keys
-		keys = new boolean[256];
-	}
-	public void keyTyped(KeyEvent e) 
-	{
+		Scanner playerInputReader = new Scanner(System.in);  // Create a Scanner object
+		System.out.println("Enter a key");
 		
+		input = playerInputReader.nextLine();
+		checkInput();
 	}
 
-	public void keyPressed(KeyEvent e)
+	private void checkInput() 
 	{
-		//checks if a key has been pressed
-		keys[e.getKeyCode()] = true;
+		if(input == UP_KEY)
+		{
+			up = true;
+		}
+		
+		if(input == DOWN_KEY)
+		{
+			down = true;
+		}
+		
+		if(input == LEFT_KEY)
+		{
+			left = true;
+		}
+		
+		if(input == RIGHT_KEY)
+		{
+			right = true;
+		}
 	}
-
-	public void keyReleased(KeyEvent e) 
-	{
-		//checks if a key has been released
-		keys[e.getKeyCode()] = false;
-	}
+	 
 	
 }
+	
+
