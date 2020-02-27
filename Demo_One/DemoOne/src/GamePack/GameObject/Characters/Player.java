@@ -13,10 +13,10 @@ public class Player extends Characters
 	{
 		super(handler, x, y, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
 		
-		bounds.x = 0;
-		bounds.y = 0;
-		bounds.width = 50;
-		bounds.height = 50;
+		bounds.x =  0;
+		bounds.y =  0;
+		bounds.width = Characters.DEFAULT_CHARACTER_WIDTH  - 20;
+		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT - 20;
 	}
 
 	//Tick and render Methods
@@ -38,31 +38,31 @@ public class Player extends Characters
 	//gets the KeyBoard input and decides if the play should move.
 	private void getInput()
 	{
-		xMoveAmount = 0;
-		yMoveAmount = 0;
+		xMove = 0;
+		yMove = 0;
 		
 		//Move up
 		if(handler.getKeyManger().up)
 		{
-			yMoveAmount = -speed; 
+			yMove = -speed; 
 		}
 		
 		//Move down
 		if(handler.getKeyManger().down)
 		{
-			yMoveAmount = speed; 
+			yMove = speed; 
 		}
 		
 		//Move Left
 		if(handler.getKeyManger().left)
 		{
-			xMoveAmount = -speed; 
+			xMove = -speed; 
 		}
 		
 		//Move Right
 		if(handler.getKeyManger().right)
 		{
-			xMoveAmount = speed; 
+			xMove = speed; 
 		}
 	}
 	
