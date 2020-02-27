@@ -132,7 +132,7 @@ public class Game implements Runnable
 			timer +=currentTime - lastTime;
 			lastTime = currentTime;
 			
-			if(changeInTime >= 1)    
+			if(changeInTime >= 1) 
 			{
 				//Calls the tick and render method each frame 
 				tick();

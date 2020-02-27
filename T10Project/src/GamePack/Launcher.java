@@ -7,7 +7,7 @@ public class Launcher
 {
 	public static void main(String[] args) throws IOException
 	{	
-		Game game = new Game("T10 Project Test", 1280, 720);
+		Game game = new Game("T10 Project Test", 1080, 720);
 		game.start();
 	}
 }

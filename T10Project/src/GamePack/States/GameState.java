@@ -22,10 +22,9 @@ public class GameState extends State
 		super(handler);
 		
 		//Creates a new randomly generated maze
-		String MazeDataPath =  "res/Worlds/WorldOne.txt";
+		String MazeDataPath =  "res/Worlds/MazeData.txt";
 		try
 		{
-			
 			Maze maze = new Maze(mazeWidth, mazeHeight, MazeDataPath);
 		} catch (IOException e) 
 		{

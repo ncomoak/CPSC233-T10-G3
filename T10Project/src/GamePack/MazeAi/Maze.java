@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class Maze
 {
-    private int height;
-    private int width;
-    private ArrayList<ArrayList<MazeBlock>> mazeList;
+    int height;
+    int width;
+    ArrayList<ArrayList<MazeBlock>> mazeList;
     
 
     public Maze(final int height, final int width, String path) throws IOException
@@ -35,7 +35,7 @@ public class Maze
         drawMaze(width * 5, height * 5, path);
     }
     
-    private void recursiveMaze()
+    public void recursiveMaze()
     {
     	int currentHeight = 0;
         int currentWidth = 0;
@@ -106,7 +106,7 @@ public class Maze
         }
     }
     
-    private void drawMaze(int width, int height, String path) throws IOException{
+    public void drawMaze(int width, int height, String path) throws IOException{
     	
     	String firstLine = width + " " + height;
     	String secondLine = "\n" + 100 + " " + 100;
