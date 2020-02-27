@@ -7,6 +7,7 @@ import GamePack.MazeAi.*;
 import GamePack.Tiles.Tile;
 import GamePack.utils.Utils;
 
+// the state in which the player plays the game 
 public class GameState 
 {
 	private int width, height;
@@ -106,7 +107,8 @@ public class GameState
 	}
 
 
-	public int getSpawnY() {
+	public int getSpawnY() 
+	{
 		return spawnY;
 	}
 	public void setSpawnY(int spawnY) 

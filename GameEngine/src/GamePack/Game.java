@@ -47,7 +47,7 @@ public class Game
 	}
 	
 	
-	
+	//renders the graphics of the game 
 	private void render() 
 	{
 		gameState.render();

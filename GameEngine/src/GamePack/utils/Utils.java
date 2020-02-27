@@ -27,7 +27,7 @@ public class Utils
 		return builder. toString(); 
 	}
 	
-	//parses and int form a string 
+	//parses and int from a string 
 	public static int parseInt(String number)
 	{
 		try 

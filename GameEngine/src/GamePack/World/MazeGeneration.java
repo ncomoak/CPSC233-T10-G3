@@ -1,5 +1,6 @@
 package GamePack.World;
 
+//creates a brand new maze 
 import java.io.IOException;
 
 import GamePack.MazeAi.Maze;

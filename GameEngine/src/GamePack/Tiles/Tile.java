@@ -2,7 +2,6 @@ package GamePack.Tiles;
 
 public class Tile 
 {
-	
 	//all Tiles in the game 
 	public static Tile[] tiles= new Tile[256];
 	public static Tile grass = new grassTile(0);
@@ -11,7 +10,6 @@ public class Tile
 	
 	
 	//CLASS
-	//Tiles texture
 	//it's id 
 	protected final int id;
 	
@@ -28,18 +26,6 @@ public class Tile
 	{
 		return false;
 	}
-	
-	//Tick and render Method
-	public void tick()
-	{
-		
-	}
-	
-	public void render()
-	{
-		
-	}
-	
 	
 	//Getter and setter
 	public int getID()
