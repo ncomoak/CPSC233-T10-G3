@@ -1,3 +1,5 @@
+This project Uses JavaSE-1.8
+
 To run the file on eclipse:
 1. Create a new Java Project, uncheck "default location" and set the directory
 to the location of the file. Then click finish.
