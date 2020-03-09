@@ -1,3 +1,5 @@
+//https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
+//Video: 13,15,21,22
 package GamePack.GameObject.Characters;
 
 import GamePack.Handler;
@@ -15,7 +17,15 @@ public abstract class Characters extends GameObject
 	protected float speed;
 	protected float xMove, yMove;	
 	
-
+	
+	/*Constructor, sets up a new Characters
+	* @param Handler, handler. the game handler.
+	* @param float, x. the x position of the Game Object.
+	* @param float, y. the y position of the Game Object.
+	* @param int, width. the width of the display.
+	* @param int, height. the height of the display.
+	* @return void,
+	*/
 	public Characters(Handler handler,float x, float y, int width, int height) 
 	{
 		super(handler,x, y, width, height);
@@ -27,13 +37,18 @@ public abstract class Characters extends GameObject
 	
 	//Methods
 	
-	//Movement
+	/* Handles X and Y Movement 
+	* @return void,
+	*/
 	public void move()
 	{
 		moveX();
 		moveY();
 	}
 	
+	/* Handles X  Movement 
+	* @return void,
+	*/
 	public void moveX() 
 	{
 		if(xMove > 0) //moving right
@@ -67,6 +82,10 @@ public abstract class Characters extends GameObject
 			}
 		}
 	}
+	
+	/* Handles Y  Movement 
+	* @return void,
+	*/
 	public void moveY() 
 	{
 		if(yMove < 0) //moving up
@@ -101,48 +120,80 @@ public abstract class Characters extends GameObject
 		}
 	}
 	
-	//Checks if there is a collision with a given tile
+	
+	/* Checks if there is a collision with a given tile.
+	* @param int, x. checks if there is a collision in the x.
+	* @param int, y. checks if there is a collision in the y.
+	* @return boolean, checks if there is a collision with a given tile.
+	*/
 	protected boolean collionWithTile(int x, int y)
 	{
 		return handler.getWorld().getTile(x, y).isSolid();
 	}
 	
 	
-	//Getters and Setters 
+	//Getters and Setters
+	
+	/*gets the health of the Character.  
+	* @return int, The health of the Character.
+	*/
 	public int getHealth() 
 	{
 		return health;
 	}
+	/*sets the health of the Character. 
+	* @param int, health. The health of the Character.
+	* @return void,
+	*/
 	public void setHealth(int health) 
 	{
 		this.health = health;
 	}
 
-
+	
+	/*gets the speed of the Character.  
+	* @return float, The speed of the Character.
+	*/
 	public float getSpeed() 
 	{
 		return speed;
 	}
+	/*sets the speed of the Character. 
+	* @param float, health. The health of the Character.
+	* @return void,
+	*/
 	public void setSpeed(float speed) 
 	{
 		this.speed = speed;
 	}
 
-
+	/*gets the x move amount of the Character.  
+	* @return float, The the x move amount of the Character.
+	*/
 	public float getxMove() 
 	{
 		return xMove;
 	}
+	/*sets the  the x move amount of the Character. 
+	* @param float, xMove. The  the x move amount of the Character.
+	* @return void,
+	*/
 	public void setxMove(float xMove) 
 	{
 		this.xMove = xMove;
 	}
 
-
+	/*gets the y move amount of the Character.  
+	* @return float, The the y move amount of the Character.
+	*/
 	public float getyMove() 
 	{
 		return yMove;
 	}
+	/*sets the  the y move amount of the Character. 
+	* @param float, yMove. The  the y move amount of the Character.
+	* @return void,
+	*/
 	public void setyMove(float yMove) 
 	{
 		this.yMove = yMove;

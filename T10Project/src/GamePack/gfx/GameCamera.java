@@ -1,3 +1,5 @@
+//https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
+//Video: 19,24
 package GamePack.gfx;
 
 import GamePack.Handler;
@@ -8,7 +10,11 @@ public class GameCamera
 {
 	private Handler handler;
 	private float xOffset, yOffset;
-	
+	/*Constructor for the GameCamera Class. 
+	*@param Handler handler
+	*@param xOffset current xOffset to follow player.
+	*@param yOffset current yOffset to follow player. 
+	*/
 	public GameCamera(Handler handler,float xOffest, float yOffset)
 	{
 		this.handler = handler;
@@ -16,8 +22,10 @@ public class GameCamera
 		this.yOffset = yOffset;
 	}
 	
-	//Methods
-	//Moves the game Camera
+	/*Moves the camera left or right. 
+	*@param float xAmt, how much you want to move camera to right. 
+	*@param float yAmt, how much you want to move the camera to the left. 
+	*/
 	public void move(float xAmt, float yAmt)
 	{
 		//Moves the camera left and right 
@@ -27,7 +35,8 @@ public class GameCamera
 		checkBlankSpace();
 	}
 	
-	// Checks and makes sure the camera does not move into a blank space;
+	/* Checks and makes sure the camera does not move into a blank space. No return types or parameters. 
+	*/
 	public void checkBlankSpace() 
 	{
 		//Checks and centers the top left corner
@@ -53,7 +62,9 @@ public class GameCamera
 		}
 	}
 	
-	//Centers the camera on the players location
+	/*Centers camera on players location. 
+	*@param GameObject Player 
+	*/
 	public void centerOnGameObject(GameObject Player)
 	{
 		xOffset = Player.getX() - handler.getWidth() / 2 + Player.getWidth()/2;
@@ -64,21 +75,31 @@ public class GameCamera
 	
 	
 	
-	//Getters and Setters
+	/*returns player's xOffset
+	*@return float xOffset
+	*/
 	public float getxOffset()
 	{
 		return xOffset;
 	}
+	/*sets player's xOffset. 
+	*@param float xOffset 
+	*/
 	public void setxOffset(float xOffset) 
 	{
 		this.xOffset = xOffset;
 	}
 
-	
+	/*returns player's yOffset
+	*@return float yOffset
+	*/
 	public float getyOffset() 
 	{
 		return yOffset;
 	}
+	/*sets player's yOffset
+	*@param float yOffset
+	*/
 	public void setyOffset(float yOffset) 
 	{
 		this.yOffset = yOffset;

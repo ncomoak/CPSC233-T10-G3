@@ -12,7 +12,12 @@ public class Maze
     int width;
     ArrayList<ArrayList<MazeBlock>> mazeList;
     
-
+    /*Construcktor to declare a new maze
+    *@param int height, height of maze. 
+    *@param int width, width of maze. 
+    *@param String path, path to a file to write the maze too. 
+    *@throws IOException
+    */
     public Maze(final int height, final int width, String path) throws IOException
     {
         //Create 2D List. 
@@ -23,7 +28,6 @@ public class Maze
                mazeList.get(i).add(new MazeBlock(j,i));
             }
         }
-        //Create a border around the edge of the maze. 
         this.height = height;
         this.width = width;
         this.mazeList = mazeList;
@@ -31,10 +35,10 @@ public class Maze
         //The Generation and Drawing of the maze 
         recursiveMaze();
         
-        //Your algorithm Seems to multiply By a factor of 5;
         drawMaze(width * 5, height * 5, path);
     }
-    
+    /*loops through the maze to carve randomly generated passages. 
+    */
     public void recursiveMaze()
     {
     	int currentHeight = 0;
@@ -105,6 +109,13 @@ public class Maze
             }
         }
     }
+
+    /*Draws maze
+    *@param int width
+    *@param int height 
+    *@param String path, path to file to write maze too. 
+    *@throws IOException
+    */
     
     public void drawMaze(int width, int height, String path) throws IOException{
     	
@@ -162,6 +173,11 @@ public class Maze
         writer.close();
     }
     
+    /*checks to see if there is another mazeBlock with the same xCoord and yCoord in a given arrayList. 
+    *@param int xCoord
+    *@param int yCoord
+    *@param ArrayList<MazeBlock> mazeBlockList
+    */
     private static boolean checkForMazeBlock(int xCoord, int yCoord, ArrayList<MazeBlock> mazeBlockList){//Checks to see if a mazeBlock with the right xCoor and yCoord are in a list of mazeBlocks. 
         for(int i = 0; i < mazeBlockList.size(); i++){
             if(mazeBlockList.get(i).xCoord == xCoord && mazeBlockList.get(i).yCoord == yCoord){

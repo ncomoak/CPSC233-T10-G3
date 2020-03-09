@@ -1,3 +1,5 @@
+//https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
+//Video: 11,13,16,17,18,21
 package GamePack.States;
 
 import java.awt.Graphics;
@@ -16,7 +18,9 @@ public class GameState extends State
 	
 	private int mazeWidth = 5;
 	private int mazeHeight = 5;
-	
+	/*Constructor which creates a new game state with a fully generated maze object, world and player.
+	*@param Handler handler
+	*/
 	public GameState(Handler handler) 
 	{
 		super(handler);
@@ -40,12 +44,17 @@ public class GameState extends State
 	}
 
 	
-	//Tick and Render Methods 
+	/*Calls world and player tick methods. No return types. 
+	*
+	*/
 	public void tick() 
 	{
 		world.tick();
 		player.tick();
 	}
+	/*Render's player and world. 
+	*
+	*/
 
 	public void render(Graphics g) 
 	{

@@ -5,7 +5,7 @@ import java.util.Scanner;
 //checks if a certain key has been pressed
 public class KeyManger 
 {
-	String input = "";
+	String playerInput = "";
 	
 	public boolean up,down,left,right;
 	
@@ -14,33 +14,35 @@ public class KeyManger
 	private String LEFT_KEY = "a";
 	private String RIGHT_KEY = "d";
 	
+	//where calculations happen
 	public void tick() 
 	{
 		Scanner playerInputReader = new Scanner(System.in);  // Create a Scanner object
 		System.out.println("Enter a key");
 		
-		input = playerInputReader.nextLine();
+		playerInput = playerInputReader.nextLine();
 		checkInput();
 	}
 
+	//checks if a certain input is given 
 	private void checkInput() 
 	{
-		if(input == UP_KEY)
+		if(playerInput == UP_KEY)
 		{
 			up = true;
 		}
 		
-		if(input == DOWN_KEY)
+		if(playerInput == DOWN_KEY)
 		{
 			down = true;
 		}
 		
-		if(input == LEFT_KEY)
+		if(playerInput == LEFT_KEY)
 		{
 			left = true;
 		}
 		
-		if(input == RIGHT_KEY)
+		if(playerInput == RIGHT_KEY)
 		{
 			right = true;
 		}

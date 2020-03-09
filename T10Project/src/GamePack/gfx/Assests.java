@@ -1,3 +1,5 @@
+//https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
+//Video: 9
 package GamePack.gfx;
 
 import java.awt.image.BufferedImage;
@@ -8,7 +10,9 @@ public class Assests
 	public static BufferedImage grass;
 	public static BufferedImage dirt;
 	public static BufferedImage rock;
-	
+	/*loads images. No parameters or return types. 
+	*
+	*/
 	public static void init() 
 	{
 		player = ImageLoader.loadImage("/textures/LC2.png");

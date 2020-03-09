@@ -1,3 +1,5 @@
+//https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
+//Video: 3,4,5,6,7,9,10,12,14,15,19,21,24
 package GamePack;
 
 import java.awt.*;
@@ -34,6 +36,11 @@ public class Game implements Runnable
 	//Handler
 	private Handler handler;
 	
+	/*Constructor, sets up a new Game 
+	* @param String, title. the title of the window.
+	* @param int, width. the width of the display.
+	* @return void,
+	*/
 	public Game(String title, int width, int height)
 	{
 		this.width = width;
@@ -44,7 +51,10 @@ public class Game implements Runnable
 	}
 	
 	
-	//This Method initializes all of the variables needed.
+	
+	/* This Method initializes all of the variables needed.
+	* @return void,
+	*/
 	private void init() 
 	{	
 		//Creating a display and adding a keyLister
@@ -66,7 +76,10 @@ public class Game implements Runnable
 		State.setState(gameState);
 	}
 	
-	// This Method is called Every frame and is used for all the logic 
+	
+	/* This Method is called every frame and is used for all the logic 
+	* @return void,
+	*/
 	private void tick()
 	{
 		//Input Check
@@ -79,7 +92,10 @@ public class Game implements Runnable
 		}
 	}	
 
-	// This Method is called every frame and it show the  renders all the graphics. 
+	
+	/* This Method is called every frame and it show the  renders all the graphics.
+	* @return void,
+	*/
 	private void render()
 	{
 		//The bs(Buffer Strategy is getting the canvas to draw on )
@@ -106,7 +122,10 @@ public class Game implements Runnable
 	}
 	
 	
-	//GameLoop
+	
+	/* This Method is  the main game loop that runs every 60 frame and it renders all the graphics and calculates all the logic.
+	* @return void,
+	*/
 	public void run() 
 	{
 		int NANO_SECONDS = 1000000000;
@@ -156,6 +175,10 @@ public class Game implements Runnable
 	
 	
 	//Starting and Stopping of a new Thread
+	
+	/* This Method is starts a new Thread
+	* @return void,
+	*/
 	public synchronized void start()
 	{
 		if(gameIsRunning) 
@@ -168,6 +191,9 @@ public class Game implements Runnable
 		thread.start();
 	}
 	
+	/* This Method is stops the Thread
+	* @return void,
+	*/
 	public synchronized void stop()
 	{
 		if(!gameIsRunning) 
@@ -187,21 +213,34 @@ public class Game implements Runnable
 	}
 	
 	//Getters and Setters 
+	
+	/*gets the KeyManger
+	* @return canvas,the KeyManger.
+	*/
 	public KeyManger getKeyManger()
 	{
 		return keyManger;
 	}
 	
+	/*gets the GameCamera
+	* @return GameCamera,the GameCamera.
+	*/
 	public GameCamera getGameCamera()
 	{
 		return gameCamera;
 	}
 
+	/*gets the width of the game
+	* @return int,the width.
+	*/
 	public int getWidth() 
 	{
 		return width;
 	}
 
+	/*gets the height of the game
+	* @return int,the height.
+	*/
 	public int getHeight() 
 	{
 		return height;
