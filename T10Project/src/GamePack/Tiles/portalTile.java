@@ -5,11 +5,11 @@ package GamePack.Tiles;
 
 import GamePack.gfx.Assests;
 
-public class grassTile extends Tile 
+public class portalTile extends Tile 
 {
-	public grassTile(int id) 
+	public portalTile(int id) 
 	{
-		super(Assests.grass, id);
+		super(Assests.portal, id);
 	}
 
 }

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public class Assests 
 {
 	public static BufferedImage player;
-	public static BufferedImage grass;
+	public static BufferedImage portal;
 	public static BufferedImage dirt;
 	public static BufferedImage rock;
 	/*loads images. No parameters or return types. 
@@ -16,8 +16,8 @@ public class Assests
 	public static void init() 
 	{
 		player = ImageLoader.loadImage("/textures/LC2.png");
-		grass =  ImageLoader.loadImage("/textures/grass.jpg");
+		portal =  ImageLoader.loadImage("/textures/portal.png");
 		dirt =  ImageLoader.loadImage("/textures/Dirt.png");
-		rock =  ImageLoader.loadImage("/textures/rock.jpg");
+		rock =  ImageLoader.loadImage("/textures/rock.png");
 	}
 }

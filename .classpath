@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="GameEngine/src"/>
+	<classpathentry kind="src" path="T10 Project TEXT/src"/>
+	<classpathentry kind="src" path="T10Project/src"/>
+	<classpathentry kind="output" path="GameEngine/bin"/>
+</classpath>

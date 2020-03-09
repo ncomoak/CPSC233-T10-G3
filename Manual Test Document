@@ -1,0 +1,20 @@
+Test 1: 
+Start the game, and then restart it. The maze should be different then when you started the first time. 
+
+Test 2: 
+Use the following keys a,w,s and d to make sure that the player can move in every direction. Make sure this is done when the player is not going to crash into any walls. 
+
+Test 3: 
+Move the player into an interior maze wall, and make sure the player is unable to walk through the wall. 
+
+Test 4: 
+Move the player into an exterior maze wall, and make sure the player is unable to walk through that wall/out of the maze. 
+
+Test 5: 
+Make sure at least one monster spawns in the maze. 
+
+Test 6: 
+
+Make sure the player is able to exit the maze. 
+
+Test 7: Repeat the following tests for the text based interface. 

@@ -10,7 +10,7 @@ public class Tile
 	
 	//all Tiles in the game 
 	public static Tile[] tiles= new Tile[256];
-	public static Tile grass = new grassTile(0);
+	public static Tile portal = new portalTile(0);
 	public static Tile dirt = new dirtTile(1);
 	public static Tile rock = new rockTile(2);
 	

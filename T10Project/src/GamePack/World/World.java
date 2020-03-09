@@ -78,7 +78,7 @@ public class World
 		
 		if(x < 0 || y < 0 || x >= width || y >= height)
 		{
-			return Tile.grass;
+			return Tile.dirt;
 		}
 		
 		Tile t = Tile.tiles[worldTiles[x][y]];
