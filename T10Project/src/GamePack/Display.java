@@ -18,7 +18,7 @@ public class Display
 	/* Sets up a new Display 
 	* @param String, title. the title of the window.
 	* @param int, width. the width of the display.
-	* @return void, height. the height of the display.
+	* @return void,
 	*/
 	public Display(String title, int width, int height)
 	{
