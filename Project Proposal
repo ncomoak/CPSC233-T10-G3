@@ -1,9 +1,0 @@
-Our game is going to be a top-down, randomly generated Rouge-like maze. The mazes will be either procedurally generated or hand made with
-each level becoming progressively harder to solve. The game will randomly generate monsters that the player will fight, and will include 
-a shop system in which players can purchase weapons and armour. In order to do so, the players can earn coins and experience by defeating
-monsters. The graphics will resemble that of a classic arcade game. 
-	The player will have the option of choosing their class and race which comes with their respective skills,
-  abilities and strengths. These races include elf, dwarf and goblin, while classes include rouge, mage and archer.
-  Additionally, the player will also have health, defence and experience stats.  If the player dies or if the time runs out before
-  the player exit the maze, the current level will restart. If the player exists in the maze, a new maze will be randomly generated. 
-
