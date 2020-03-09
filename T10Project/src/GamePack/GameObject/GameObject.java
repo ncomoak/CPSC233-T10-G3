@@ -102,7 +102,7 @@ public abstract class GameObject
 		this.width = width;
 	}
 
-	/*gets the height of the Game Object.  
+	/*Constructor, gets the height of the Game Object.  
 	* @return int, The height of the Game Object.
 	*/
 	public int getHeight() 

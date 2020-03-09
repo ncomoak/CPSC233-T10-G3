@@ -18,7 +18,7 @@ public abstract class Characters extends GameObject
 	protected float xMove, yMove;	
 	
 	
-	/* Sets up a new Characters
+	/*Constructor, sets up a new Characters
 	* @param Handler, handler. the game handler.
 	* @param float, x. the x position of the Game Object.
 	* @param float, y. the y position of the Game Object.

@@ -36,7 +36,7 @@ public class Game implements Runnable
 	//Handler
 	private Handler handler;
 	
-	/* Sets up a new Game 
+	/*Constructor, sets up a new Game 
 	* @param String, title. the title of the window.
 	* @param int, width. the width of the display.
 	* @return void,

@@ -12,7 +12,7 @@ public class Handler
 	private Game game;
 	private World world;
 	 
-	/* Sets up a new Handler
+	/*Constructor, sets up a new Handler
 	* @param String, title. the title of the window.
 	* @param int, width. the width of the display.
 	* @return void,

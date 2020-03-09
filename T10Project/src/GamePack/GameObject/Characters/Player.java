@@ -11,7 +11,7 @@ import GamePack.gfx.Assests;
 public class Player extends Characters 
 {
 	
-	/* Sets up a new Player
+	/*Constructor, sets up a new Player
 	* @param Handler, handler. the game handler.
 	* @param float, x. the x position of the Game Object.
 	* @param float, y. the y position of the Game Object.

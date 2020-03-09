@@ -15,7 +15,7 @@ public class Display
 	private String title;
 	private int width,height;
 	
-	/* Sets up a new Display 
+	/*Constructor, sets up a new Display 
 	* @param String, title. the title of the window.
 	* @param int, width. the width of the display.
 	* @return void,
