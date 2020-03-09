@@ -10,7 +10,9 @@ public class Assests
 	public static BufferedImage grass;
 	public static BufferedImage dirt;
 	public static BufferedImage rock;
-	
+	/*loads images. No parameters or return types. 
+	*
+	*/
 	public static void init() 
 	{
 		player = ImageLoader.loadImage("/textures/LC2.png");
