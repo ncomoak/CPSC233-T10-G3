@@ -15,7 +15,7 @@ public class Game
 
 	private boolean gameIsRunning;
 	
-	private String MazeDataPath =  "Worlds/MazeData.txt";
+	private String MazeDataPath =  "res/Worlds/MazeData.txt";
 
 	
 	//This Method initializes all of the variables needed.

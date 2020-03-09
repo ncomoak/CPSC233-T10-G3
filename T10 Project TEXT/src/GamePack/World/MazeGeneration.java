@@ -9,7 +9,7 @@ public class MazeGeneration
 {
 	public MazeGeneration(String path, int mazeWidth, int mazeHeight)
 	{
-		String MazeDataPath =  "Worlds/MazeData.txt";
+		String MazeDataPath =  "res/Worlds/MazeData.txt";
 		try
 		{
 			Maze maze = new Maze(mazeWidth, mazeHeight, MazeDataPath);
