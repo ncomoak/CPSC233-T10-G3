@@ -18,6 +18,6 @@ public class Assests
 		player = ImageLoader.loadImage("/textures/LC2.png");
 		grass =  ImageLoader.loadImage("/textures/grass.jpg");
 		dirt =  ImageLoader.loadImage("/textures/Dirt.png");
-		rock =  ImageLoader.loadImage("/textures/rock.jpg");
+		rock =  ImageLoader.loadImage("/textures/rock.png");
 	}
 }
