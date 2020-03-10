@@ -69,6 +69,7 @@ public class Maze
             if(possibleDirections.size() == 0){//If there are no possible directions, and all tiles have a passage going in or out, the loop ends. 
                 if(usedMazeBlocks.size() == width*height){
                     allBrokenPaths = true;
+                    mazeList.get(currentHeight).get(currentWidth).portal = true;
                 }
                 else{
                     MazeBlock lastMazeBlock = usedMazeBlocks.get(usedMazeBlocks.size() - 1);//If there are still tiles left, we go to the last mazeBlock and see if there are any driections to go there
@@ -133,18 +134,34 @@ public class Maze
             for(int k = 0; k < 3; k++){
             	writer.write("\n");
                 for(int j = 0; j < mazeList.size();j++){
-                    if(mazeList.get(i).get(j).west && mazeList.get(i).get(j).east){
-                    	writer.write("2 1 1 1 2 ");
-                    }
-                    else if(mazeList.get(i).get(j).west){
-                    	writer.write("2 1 1 1 1 ");
-                    }
-                    else if(mazeList.get(i).get(j).east){
-                    	writer.write("1 1 1 1 2 ");
-                    }
-                    else{
-                    	writer.write("1 1 1 1 1 ");
-                    }
+                	if(mazeList.get(i).get(j).portal) {
+                		if(mazeList.get(i).get(j).west && mazeList.get(i).get(j).east){
+                        	writer.write("2 3 3 3 2 ");
+                        }
+                        else if(mazeList.get(i).get(j).west){
+                        	writer.write("2 3 3 3 3 ");
+                        }
+                        else if(mazeList.get(i).get(j).east){
+                        	writer.write("3 3 3 3 2 ");
+                        }
+                        else{
+                        	writer.write("3 3 3 3 3 ");
+                        }
+                	}
+                	else {
+                		if(mazeList.get(i).get(j).west && mazeList.get(i).get(j).east){
+                        	writer.write("2 1 1 1 2 ");
+                        }
+                        else if(mazeList.get(i).get(j).west){
+                        	writer.write("2 1 1 1 1 ");
+                        }
+                        else if(mazeList.get(i).get(j).east){
+                        	writer.write("1 1 1 1 2 ");
+                        }
+                        else{
+                        	writer.write("1 1 1 1 1 ");
+                        }
+                	}
                     
                 }
             }
