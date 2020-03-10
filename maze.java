@@ -1,20 +1,12 @@
-package GamePack.MazeAi;
-
-import java.util.Random;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class Maze
-{
-    private int height;
-    private int width;
-    private ArrayList<ArrayList<MazeBlock>> mazeList;
-    
+class Maze{
+    int height;
+    int width;
+    ArrayList<ArrayList<MazeBlock>> mazeList;
 
-    public Maze(final int height, final int width, String path) throws IOException
-    {
+    public Maze(final int height, final int width){
         //Create 2D List. 
         ArrayList <ArrayList<MazeBlock>> mazeList = new ArrayList<>();
         for(int i = 0; i < height; i++){
@@ -23,21 +15,17 @@ public class Maze
                mazeList.get(i).add(new MazeBlock(j,i));
             }
         }
-        //Create a border around the edge of the maze. 
+        
+        //set instance variables or fields. 
         this.height = height;
         this.width = width;
         this.mazeList = mazeList;
         
-        //The Generation and Drawing of the maze 
-        recursiveMaze();
-        
-        //Your algorithm Seems to multiply By a factor of 5;
-        drawMaze(width * 5, height * 5, path);
+
     }
-    
-    private void recursiveMaze()
-    {
-    	int currentHeight = 0;
+    public void recursiveMaze(){
+        //Sets all veriables. 
+        int currentHeight = 0;
         int currentWidth = 0;
         ArrayList<MazeBlock> usedMazeBlocks = new ArrayList<>();
         Random random = new Random();//Creates an instance of the Random Class so that we can use it to generate random numbers below. 
@@ -69,7 +57,6 @@ public class Maze
             if(possibleDirections.size() == 0){//If there are no possible directions, and all tiles have a passage going in or out, the loop ends. 
                 if(usedMazeBlocks.size() == width*height){
                     allBrokenPaths = true;
-                    mazeList.get(currentHeight).get(currentWidth).portal = true;
                 }
                 else{
                     MazeBlock lastMazeBlock = usedMazeBlocks.get(usedMazeBlocks.size() - 1);//If there are still tiles left, we go to the last mazeBlock and see if there are any driections to go there
@@ -107,78 +94,48 @@ public class Maze
         }
     }
     
-    private void drawMaze(int width, int height, String path) throws IOException{
-    	
-    	String firstLine = width + " " + height;
-    	String secondLine = "\n" + 100 + " " + 100;
-    	
-    	BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-    	
-    	// The width and height of the maze 
-    	writer.write(firstLine);
-    	writer.write(secondLine);
-    	
-    	
-        //Draws maze (Text based.) -> Goes to res/World(Folder)
+    public void drawMaze(){//Draws text based version of maze for testing purposes only. 
+        System.out.println("");
         for(int i = 0; i < mazeList.get(0).size();i++){
-        	writer.write("\n");
+            System.out.println("");
             for(int j = 0; j < mazeList.size(); j++){
                 if(mazeList.get(i).get(j).north){
-                	writer.write("2 2 2 2 2 ");
+                    System.out.print("+++++");
                 }
-                else
-                {
-                	writer.write("2 1 1 1 2 ");
+                else{
+                    System.out.print("+   +");
                 }
             }
             for(int k = 0; k < 3; k++){
-            	writer.write("\n");
+                System.out.println("");
                 for(int j = 0; j < mazeList.size();j++){
-                	if(mazeList.get(i).get(j).portal) {
-                		if(mazeList.get(i).get(j).west && mazeList.get(i).get(j).east){
-                        	writer.write("2 3 3 3 2 ");
-                        }
-                        else if(mazeList.get(i).get(j).west){
-                        	writer.write("2 3 3 3 3 ");
-                        }
-                        else if(mazeList.get(i).get(j).east){
-                        	writer.write("3 3 3 3 2 ");
-                        }
-                        else{
-                        	writer.write("3 3 3 3 3 ");
-                        }
-                	}
-                	else {
-                		if(mazeList.get(i).get(j).west && mazeList.get(i).get(j).east){
-                        	writer.write("2 1 1 1 2 ");
-                        }
-                        else if(mazeList.get(i).get(j).west){
-                        	writer.write("2 1 1 1 1 ");
-                        }
-                        else if(mazeList.get(i).get(j).east){
-                        	writer.write("1 1 1 1 2 ");
-                        }
-                        else{
-                        	writer.write("1 1 1 1 1 ");
-                        }
-                	}
+                    if(mazeList.get(i).get(j).west && mazeList.get(i).get(j).east){
+                        System.out.print("+   +");
+                    }
+                    else if(mazeList.get(i).get(j).west){
+                        System.out.print("+    ");
+                    }
+                    else if(mazeList.get(i).get(j).east){
+                        System.out.print("    +");
+                    }
+                    else{
+                        System.out.print("     ");
+                    }
                     
                 }
             }
-            writer.write("\n");
+            System.out.println("");
             for(int j = 0; j < mazeList.size(); j++){
                 if(mazeList.get(i).get(j).south){
-                	writer.write("2 2 2 2 2 ");
+                    System.out.print("+++++");
                 }
                 else{
-                	writer.write("2 1 1 1 2 ");
+                    System.out.print("+   +");
                 }
             }
         }
-        writer.write("\n");
-        writer.close();
+        System.out.println("");
     }
-    
     private static boolean checkForMazeBlock(int xCoord, int yCoord, ArrayList<MazeBlock> mazeBlockList){//Checks to see if a mazeBlock with the right xCoor and yCoord are in a list of mazeBlocks. 
         for(int i = 0; i < mazeBlockList.size(); i++){
             if(mazeBlockList.get(i).xCoord == xCoord && mazeBlockList.get(i).yCoord == yCoord){
