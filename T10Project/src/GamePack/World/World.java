@@ -11,9 +11,13 @@ public class World
 {
 	private Handler handler;
 	private int width, height;
-	private int spawnX, spawnY;
+	private int spawnX, spawnY; 
 	private int[][] worldTiles;
 	
+	/*Constructor for world
+	 * @param Handler handler
+	 * @param String path, path for a world file. 
+	 */
 	public World(Handler handler, String path)
 	{
 		this.handler = handler;
@@ -22,11 +26,16 @@ public class World
 	}
 	
 	
-	//Tick and render Method
+	/*tick method. 
+	 * 
+	 */
 	public void tick()
 	{
 		
 	}
+	/*Renders all of the tiles in the world file
+	 * @param Graphic g, graphics context. 
+	 */
 	
 	public void render(Graphics g)
 	{
@@ -45,7 +54,9 @@ public class World
 		}
 	}
 		
-	
+	/*Loads world File
+	 * @param String path, path for the worldfile. 
+	 */
 	private void loadWorld(String path)
 	{
 		//gets the world file as a String 
@@ -72,7 +83,11 @@ public class World
 	}
 	
 	
-	//Getters and Setters
+	/*Getter method for tile
+	 * @param int x, x coordinate of the tile you want. 
+	 * @param int y, y coordinate of the tile you want. 
+	 * @return Tile
+	 */
 	public Tile getTile(int x, int y)
 	{
 		
@@ -90,32 +105,46 @@ public class World
 		return t;
 	}
 
-
+	/*Getter method for spawnX
+	 * @return spawnX.
+	 */
 	public int getSpawnX() 
 	{
 		return spawnX;
 	}
+	/*Setter method for spawnX
+	 * @param spawnX
+	 */
 	public void setSpawnX(int spawnX) 
 	{
 		this.spawnX = spawnX;
 	}
 
-
+	/*Getter method for spawnY
+	 * @return spawnY
+	 */
 	public int getSpawnY() {
 		return spawnY;
 	}
+	/*Setter method for SpawnY
+	 * @param spawnY
+	 */
 	public void setSpawnY(int spawnY) 
 	{
 		this.spawnY = spawnY;
 	}
 
-
+	/*Getter method for width of world tiles
+	 * @return width
+	 */
 	public int getWidth() 
 	{
 		return width;
 	}
 
-
+	/*Getter method for height of world tiles
+	 * @return height
+	 */
 	public int getHeight() 
 	{
 		return height;

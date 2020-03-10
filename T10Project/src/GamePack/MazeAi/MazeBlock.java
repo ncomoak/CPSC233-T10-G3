@@ -11,8 +11,8 @@ public class MazeBlock{
     public boolean portal;
     
     /*Constructor to build a mazeBlock object. 
-    *int xCoord location of mazeBlock in a 2D array.
-    *int yCoord location of mazeBlock in a 2D array.
+    *@param int xCoord location of mazeBlock in a 2D array.
+    *@param int yCoord location of mazeBlock in a 2D array.
     */
     public MazeBlock(int xCoord, int yCoord)
     {

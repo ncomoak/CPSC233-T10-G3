@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class Tile 
-{
+{ 
 	
 	//all Tiles in the game 
 	public static Tile[] tiles= new Tile[256];
@@ -22,6 +22,10 @@ public class Tile
 	protected final int id;
 	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
 	
+	/*Constructor for Tile
+	 * @param BufferedImage texture, takes an image to display on screen
+	 * @param id, takes a given id depending on weather tle is dirt, portal, rock, etc. 
+	 */
 	public Tile(BufferedImage texture, int id)
 	{
 		this.texture = texture;
@@ -30,26 +34,35 @@ public class Tile
 		tiles[id] = this;
 	}
 	
-	//Methods
-	//check if the tile can be walked on
+	/*Checks to see if tile can be walked on. 
+	 * @return False. 
+	 */
 	public boolean isSolid()
 	{
 		return false;
 	}
 	
-	//Tick and render Method
+	/*Tick method. 
+	 * 
+	 */
 	public void tick()
 	{
 		
 	}
-	
+	/*Render method, to draw a tile. 
+	 * @param Graphics g, takes a graphics context. 
+	 * @param int x takes x position of tile
+	 * @param int y takes y position of tile
+	 */
 	public void render(Graphics g, int x, int y)
 	{
 		g.drawImage(texture, x, y, TILEWIDTH, TILEHEIGHT, null);
 	}
 	
 	
-	//Getter and setter
+	/*Getter method for id
+	 * @return id
+	 */
 	public int getID()
 	{
 		return id;

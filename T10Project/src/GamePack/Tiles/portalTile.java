@@ -7,6 +7,9 @@ import GamePack.gfx.Assests;
 
 public class portalTile extends Tile 
 {
+	/*Constructor for Portal tile class. 
+	 * @param id
+	 */
 	public portalTile(int id) 
 	{
 		super(Assests.portal, id);
