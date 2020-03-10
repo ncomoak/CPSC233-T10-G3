@@ -9,15 +9,19 @@ import GamePack.Handler;
 //an abstract Sate class
 public abstract class State 
 {
-	
+	 
 	private static State currentState = null;
 	
-	//Getters and Setters
+	/*Setter method for state
+	 * @param State state, sate to set. 
+	 */
 	public static void setState(State state)
 	{
 		currentState = state;
 	}
-	
+	/*Getter method for state. 
+	 * @return State currentState. 
+	 */
 	public static State getState() 
 	{
 		return currentState;
@@ -25,14 +29,19 @@ public abstract class State
 	
 	//Class
 	protected  Handler handler;
-	
+	/*Constructor for state.
+	 */
 	public State (Handler handler)
 	{
 		this.handler = handler;
 	}
-	
-	//Tick and Render Methods
+
+	/*Abstract Tick method. 
+	 * 
+	 */
 	public abstract void tick();		
-	
+	/*Abstract Render Method. 
+	 * 
+	 */
 	public abstract void render(Graphics g);
 }

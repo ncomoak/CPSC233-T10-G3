@@ -10,8 +10,11 @@ public class Display {
 					else if(worldTiles[width][height] == 1) {
 						System.out.print(" ");
 					}
-					else {
+					else if(worldTiles[width][height] == 2) {
 						System.out.print("+");
+					}
+					else {
+						System.out.print("e");
 					}
 				}
 			System.out.println("");

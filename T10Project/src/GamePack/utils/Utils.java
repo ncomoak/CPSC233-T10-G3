@@ -7,7 +7,10 @@ import java.io.*;
 //a Class with useful methods 
 public class Utils 
 {
-	//Loads a file into a single String
+	/*Loads a file into a single string. 
+	 *@param String path, path for a given file.
+	 *@return String
+	 */
 	public static String loadFileAsString(String path)
 	{
 		StringBuilder builder = new StringBuilder();
@@ -29,7 +32,11 @@ public class Utils
 		return builder. toString(); 
 	}
 	
-	//parses and int form a string 
+	/*Parses an int into a string. 
+	 * @param String number, string to parse into a number
+	 * @return int represention of string
+	 * @throws NumberFormatException
+	 */
 	public static int parseInt(String number)
 	{
 		try 
