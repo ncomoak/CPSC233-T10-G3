@@ -8,11 +8,16 @@ import java.util.ArrayList;
 
 public class Maze
 {
+	
     private int height;
     private int width;
     private ArrayList<ArrayList<MazeBlock>> mazeList;
     
-
+    /*Constructor to create a maze object. 
+     * @param int height, height of maze object. 
+     * @param int width, width of maze object. 
+     * @param String path, path of maze object. 
+     */
     public Maze(final int height, final int width, String path) throws IOException
     {
         //Create 2D List. 
@@ -35,6 +40,9 @@ public class Maze
         drawMaze(width * 5, height * 5, path);
     }
     
+    /*Algorithm to carve passages in maze. 
+     * 
+     */
     private void recursiveMaze()
     {
     	int currentHeight = 0;
@@ -106,7 +114,12 @@ public class Maze
             }
         }
     }
-    
+    /*Writes a text based version of the maze to a file. 
+     * @param int width
+     * @param int height
+     * @param String path, a String representation of the path to the file. 
+     */
+    		
     private void drawMaze(int width, int height, String path) throws IOException{
     	
     	String firstLine = width + " " + height;
@@ -179,6 +192,12 @@ public class Maze
         writer.close();
     }
     
+    /*Checks if a mazeBlock with the same x and y coordinates are in a given arrayList of mazeBlocks
+     * @param int xCoord
+     * @param int yCoord
+     * @param ArrayList<MazeBlock> MazeList, arrayList to check x and y coordinates against. 
+     * @return boolean true if it finds the x and y coordinate values in mazeList. 
+     */
     private static boolean checkForMazeBlock(int xCoord, int yCoord, ArrayList<MazeBlock> mazeBlockList){//Checks to see if a mazeBlock with the right xCoor and yCoord are in a list of mazeBlocks. 
         for(int i = 0; i < mazeBlockList.size(); i++){
             if(mazeBlockList.get(i).xCoord == xCoord && mazeBlockList.get(i).yCoord == yCoord){

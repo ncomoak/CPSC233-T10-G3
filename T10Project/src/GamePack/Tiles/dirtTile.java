@@ -2,11 +2,13 @@
 //Video: 16
 package GamePack.Tiles;
 
-import GamePack.gfx.Assests;
+import GamePack.gfx.Assests; 
 
 public class dirtTile extends Tile 
 {
-
+	/*Constructor for dirtTile
+	 * @param id
+	 */
 	public dirtTile(int id) 
 	{
 		super(Assests.dirt, id);
