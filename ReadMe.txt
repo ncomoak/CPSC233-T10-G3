@@ -11,6 +11,6 @@ If a window opens but the game is not playable(White Screen):
 3. Click add class folder.
 4. Find the res folder and add it.
 
-
+Note: T10 Project and T10 Project Text need to be run seperately. 
 
 
