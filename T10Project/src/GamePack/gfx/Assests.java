@@ -16,7 +16,7 @@ public class Assests
 	public static void init() 
 	{
 		player = ImageLoader.loadImage("/textures/LC2.png");
-		portal =  ImageLoader.loadImage("/textures/portal.png");
+		portal =  ImageLoader.loadImage("/textures/portal.jpg");
 		dirt =  ImageLoader.loadImage("/textures/Dirt.png");
 		rock =  ImageLoader.loadImage("/textures/rock.png");
 	}
