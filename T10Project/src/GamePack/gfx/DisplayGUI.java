@@ -1,13 +1,13 @@
 //https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
 //Video: 2,3,5,14
 
-package GamePack;
+package GamePack.gfx;
 
 import java.awt.*;
 import javax.swing.JFrame;
 
 // This Class creates the window
-public class Display 
+public class DisplayGUI 
 {
 	private JFrame frame;
 	private Canvas canvas;
@@ -20,7 +20,7 @@ public class Display
 	* @param int, width. the width of the display.
 	* @return void,
 	*/
-	public Display(String title, int width, int height)
+	public DisplayGUI(String title, int width, int height)
 	{
 		this.title = title;
 		this.width = width;

@@ -10,7 +10,8 @@ import GamePack.gfx.Assests;
 // The Player
 public class Player extends Characters 
 {
-	
+	private int xCoor = -1;
+	private int yCoor = -1;
 	/*Constructor, sets up a new Player
 	* @param Handler, handler. the game handler.
 	* @param float, x. the x position of the Game Object.
@@ -26,13 +27,20 @@ public class Player extends Characters
 		bounds.width = Characters.DEFAULT_CHARACTER_WIDTH  - 20;
 		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT - 20;
 	}
+	
+	public Player(int xCoor, int yCoor)
+	{
+		super();
+		setxCoor(xCoor);
+		setyCoor(yCoor);
+	}
 
 	/* This Method is called every frame and is used for all the logic 
 	* @return void,
 	*/
 	public void tick() 
 	{
-		getInput();
+		getInput(); 
 		move();
 		handler.getGameCamera().centerOnGameObject(this);
 	}
@@ -45,6 +53,10 @@ public class Player extends Characters
 		g.drawImage(Assests.player,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
 	}
 	
+	
+	public static void render() {
+		System.out.println("P");
+	}
 	
 	// Methods
 	
@@ -81,5 +93,26 @@ public class Player extends Characters
 		}
 	}
 	
+	
+	
+	public int getxCoor() 
+	{
+		return xCoor;
+	}
+
+	public void setxCoor(int xCoor)
+	{
+		this.xCoor = xCoor;
+	}
+
+	public int getyCoor()
+	{
+		return yCoor;
+	}
+
+	public void setyCoor(int yCoor) 
+	{
+		this.yCoor = yCoor;
+	}
 
 }

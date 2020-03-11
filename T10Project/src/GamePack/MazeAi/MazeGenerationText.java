@@ -1,13 +1,11 @@
-package GamePack.World;
+package GamePack.MazeAi;
 
 //creates a brand new maze 
 import java.io.IOException;
 
-import GamePack.MazeAi.Maze;
-
-public class MazeGeneration 
+public class MazeGenerationText 
 {
-	public MazeGeneration(String path, int mazeWidth, int mazeHeight)
+	public MazeGenerationText(String path, int mazeWidth, int mazeHeight)
 	{
 		String MazeDataPath =  "res/Worlds/MazeData.txt";
 		try

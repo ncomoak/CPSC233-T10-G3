@@ -4,17 +4,19 @@ package GamePack;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import GamePack.Input.KeyManger;
-import GamePack.States.GameState;
+import GamePack.Input.KeyMangerGUI;
+import GamePack.States.GameStateGUI;
+import GamePack.States.GameStateText;
 import GamePack.States.State;
 import GamePack.gfx.Assests;
+import GamePack.gfx.DisplayGUI;
 import GamePack.gfx.GameCamera;
 
 // The main Game Class
 public class Game implements Runnable 
 {
 	//Set Up
-	private Display display;
+	private DisplayGUI displayGUI;
 	private int width,height;
 	public String title;
 	
@@ -28,13 +30,21 @@ public class Game implements Runnable
 	private State gameState;
 	
 	//Input
-	private KeyManger keyManger;
+	private KeyMangerGUI keyMangerGUI;
 	
 	//Camera
 	private GameCamera gameCamera;
 	
 	//Handler
 	private Handler handler;
+	
+	
+	//TextBased Version
+	public boolean isTextBased = false;
+	private String MazeDataPathText =  "res/Worlds/MazeData.txt";
+	private GameStateText gameStateText;
+
+	
 	
 	/*Constructor, sets up a new Game 
 	* @param String, title. the title of the window.
@@ -47,7 +57,7 @@ public class Game implements Runnable
 		this.height = height;
 		this.title = title;
 		
-		keyManger = new KeyManger();
+		keyMangerGUI = new KeyMangerGUI();
 	}
 	
 	
@@ -57,23 +67,31 @@ public class Game implements Runnable
 	*/
 	private void init() 
 	{	
-		//Creating a display and adding a keyLister
-		display = new Display(title, width, height);
-		display.getFrame().addKeyListener(keyManger);
-		
-		//initializing all the assets
-		Assests.init();
+		if(!isTextBased)
+		{
+			//Creating a display and adding a keyLister
+			displayGUI = new DisplayGUI(title, width, height);
+			displayGUI.getFrame().addKeyListener(keyMangerGUI);
+			
+			//initializing all the assets
+			Assests.init();
 
-		//initializing all the Game Handler 
-		handler = new Handler(this);
-		
-		//initializing a new camera
-		gameCamera = new GameCamera(handler,0, 0);
-		
-		
-		//initializing the States 
-		gameState = new GameState(handler);
-		State.setState(gameState);
+			//initializing all the Game Handler 
+			handler = new Handler(this);
+			
+			//initializing a new camera
+			gameCamera = new GameCamera(handler,0, 0);
+			
+			
+			//initializing the States 
+			gameState = new GameStateGUI(handler);
+			State.setState(gameState);
+		}
+		else
+		{
+			//Text Based 
+			gameStateText = new GameStateText(MazeDataPathText);
+		}
 	}
 	
 	
@@ -82,13 +100,21 @@ public class Game implements Runnable
 	*/
 	private void tick()
 	{
-		//Input Check
-		keyManger.tick();
-		
-		//Running the States
-		if(State.getState() != null)
+		if(!isTextBased)
 		{
-			State.getState().tick();
+			//Input Check
+			keyMangerGUI.tick();
+			
+			//Running the States
+			if(State.getState() != null)
+			{
+				State.getState().tick();
+			}
+		}
+		else
+		{
+			//text based
+			gameStateText.tick();	
 		}
 	}	
 
@@ -98,27 +124,35 @@ public class Game implements Runnable
 	*/
 	private void render()
 	{
-		//The bs(Buffer Strategy is getting the canvas to draw on )
-		bs = display.getCanvas().getBufferStrategy();
-		if(bs == null)
+		if(!isTextBased)
 		{
-			display.getCanvas().createBufferStrategy(3);
-			return;
+			//The bs(Buffer Strategy is getting the canvas to draw on )
+			bs = displayGUI.getCanvas().getBufferStrategy();
+			if(bs == null)
+			{
+				displayGUI.getCanvas().createBufferStrategy(3);
+				return;
+			}
+			g = bs.getDrawGraphics();
+			
+			//Clears Screen
+			g.clearRect(0, 0, width, height);
+			
+			//draws the graphics  here
+			if(State.getState() != null)
+			{
+				State.getState().render(g);
+			}
+			
+			//End Drawing
+			bs.show();
+			g.dispose();
 		}
-		g = bs.getDrawGraphics();
-		
-		//Clears Screen
-		g.clearRect(0, 0, width, height);
-		
-		//draws the graphics  here
-		if(State.getState() != null)
+		else
 		{
-			State.getState().render(g);
+			//text based
+			gameStateText.render();
 		}
-		
-		//End Drawing
-		bs.show();
-		g.dispose();
 	}
 	
 	
@@ -140,9 +174,9 @@ public class Game implements Runnable
 		
 		long timer = 0;
 		int ticks = 0;
-		
-		
-		//The main Game Loop
+			
+			
+		//The main Game Loop for GUI
 		while (gameIsRunning) 
 		{
 			//Checks if a frame has passed 
@@ -168,9 +202,22 @@ public class Game implements Runnable
 				ticks = 0;
 				timer = 0;
 			}
+			
+			// Stops the Thread when done running 
 		}
-		// Stops the Thread when done running 
 		stop();
+
+	}
+	
+	public void runText()
+	{
+		init();
+		while (gameIsRunning) 
+		{ 
+			tick();
+			render();	
+		}
+		System.out.println("game over");
 	}
 	
 	
@@ -181,14 +228,25 @@ public class Game implements Runnable
 	*/
 	public synchronized void start()
 	{
-		if(gameIsRunning) 
+		System.out.println("Game Opened");
+
+		if(!isTextBased)
 		{
-			return;
+			if(gameIsRunning) 
+			{
+				return;
+			}
+			
+			gameIsRunning = true;
+			thread = new Thread(this);
+			thread.start();
 		}
-		
-		gameIsRunning = true;
-		thread = new Thread(this);
-		thread.start();
+		else
+		{
+			//text based 
+			gameIsRunning = true;
+			runText();
+		}
 	}
 	
 	/* This Method is stops the Thread
@@ -210,6 +268,7 @@ public class Game implements Runnable
 		{
 			e.printStackTrace();
 		}
+		System.out.println("Game Closed");
 	}
 	
 	//Getters and Setters 
@@ -217,9 +276,9 @@ public class Game implements Runnable
 	/*gets the KeyManger
 	* @return canvas,the KeyManger.
 	*/
-	public KeyManger getKeyManger()
+	public KeyMangerGUI getKeyManger()
 	{
-		return keyManger;
+		return keyMangerGUI;
 	}
 	
 	/*gets the GameCamera

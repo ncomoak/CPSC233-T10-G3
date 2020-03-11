@@ -2,7 +2,7 @@
 //Video: 21
 package GamePack;
 
-import GamePack.Input.KeyManger;
+import GamePack.Input.KeyMangerGUI;
 import GamePack.World.World;
 import GamePack.gfx.GameCamera;
 
@@ -79,7 +79,7 @@ public class Handler
 	/*gets the KeyManger
 	* @return canvas,the KeyManger.
 	*/
-	public KeyManger getKeyManger()
+	public KeyMangerGUI getKeyManger()
 	{
 		return game.getKeyManger();
 	}

@@ -41,6 +41,11 @@ public abstract class GameObject
 		bounds = new Rectangle(0,0,width, height);
 	}
 	
+	public GameObject()
+	{
+		
+	}
+	
 	
 	/* The Tick method to be called in the game.
 	* @return void,

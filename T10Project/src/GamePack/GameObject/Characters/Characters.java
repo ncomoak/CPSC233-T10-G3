@@ -35,8 +35,17 @@ public abstract class Characters extends GameObject
 		yMove = 0;
 	}
 	
+	
+	
 	//Methods
 	
+	public Characters() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	/* Handles X and Y Movement 
 	* @return void,
 	*/

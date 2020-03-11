@@ -11,7 +11,7 @@ import GamePack.MazeAi.Maze;
 import GamePack.World.World;
 
 // this is the state where the gameplay will happen
-public class GameState extends State
+public class GameStateGUI extends State
 {
 	private Player player;
 	private World world;
@@ -21,7 +21,7 @@ public class GameState extends State
 	/*Constructor which creates a new game state with a fully generated maze object, world and player.
 	*@param Handler handler
 	*/
-	public GameState(Handler handler) 
+	public GameStateGUI(Handler handler) 
 	{
 		super(handler);
 		

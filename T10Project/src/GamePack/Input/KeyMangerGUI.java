@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 //checks if a certain key has been pressed
-public class KeyManger implements KeyListener
+public class KeyMangerGUI implements KeyListener
 {
 	//list of keys
 	private boolean[] keys;
@@ -23,7 +23,7 @@ public class KeyManger implements KeyListener
 	}
 	/*Constructor to initizalize an array of keys. 
 	*/
-	public KeyManger ()
+	public KeyMangerGUI ()
 	{
 		keys = new boolean[256];
 	}

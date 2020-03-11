@@ -149,7 +149,7 @@ public class Maze
                 for(int j = 0; j < mazeList.size();j++){
                 	if(mazeList.get(i).get(j).portal) {
                 		if(mazeList.get(i).get(j).west && mazeList.get(i).get(j).east){
-                        	writer.write("2 0 0 2 1 ");
+                        	writer.write("2 0 0 0 2 ");
                         }
                         else if(mazeList.get(i).get(j).west){
                         	writer.write("2 0 0 0 1 ");
@@ -158,7 +158,7 @@ public class Maze
                         	writer.write("1 0 0 0 2 ");
                         }
                         else{
-                        	writer.write("0 0 0 0 1 ");
+                        	writer.write("0 0 0 1 1 ");
                         }
                 	}
                 	else {

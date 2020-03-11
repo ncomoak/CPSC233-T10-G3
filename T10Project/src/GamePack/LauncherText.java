@@ -6,11 +6,12 @@ package GamePack;
 import java.io.IOException;
 
 //Launches the game 
-public class Launcher 
+public class LauncherText 
 {
 	public static void main(String[] args) throws IOException
 	{	
 		Game game = new Game("T10 Project Test", 1080, 720);
+		game.isTextBased = true;
 		game.start();
 	}
 }
