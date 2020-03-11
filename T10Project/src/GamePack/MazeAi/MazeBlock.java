@@ -1,16 +1,18 @@
 package GamePack.MazeAi;
 
 public class MazeBlock{
-    boolean north;
-    boolean east;
-    boolean west;
-    boolean south;
-    boolean fourWalls;
-    int xCoord;
-    int yCoord;
+    public boolean north;
+    public boolean east;
+    public boolean west;
+    public boolean south;
+    public boolean fourWalls;
+    public int xCoord;
+    public int yCoord;
+    public boolean portal;
+    
     /*Constructor to build a mazeBlock object. 
-    *int xCoord location of mazeBlock in a 2D array.
-    *int yCoord location of mazeBlock in a 2D array.
+    *@param int xCoord location of mazeBlock in a 2D array.
+    *@param int yCoord location of mazeBlock in a 2D array.
     */
     public MazeBlock(int xCoord, int yCoord)
     {
@@ -21,5 +23,6 @@ public class MazeBlock{
         this.fourWalls = true;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
+        portal = false;
     }
 }

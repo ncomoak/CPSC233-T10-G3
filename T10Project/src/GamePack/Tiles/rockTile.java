@@ -6,12 +6,16 @@ import GamePack.gfx.Assests;
 
 public class rockTile extends Tile 
 {
-
+	/*Constructor for RockTile class. 
+	 *@param id
+	 */
 	public rockTile(int id) 
 	{
 		super(Assests.rock, id);
 	}
-	
+	/*Checks to see if tile can be walked on. 
+	 * @return true
+	 */
 	public boolean isSolid()
 	{
 		return true;
