@@ -7,7 +7,18 @@ import java.awt.image.BufferedImage;
 public class Assests 
 {
 	public static BufferedImage player;
-	public static BufferedImage portal;
+	
+	// portal texture 
+	public static BufferedImage portal0;
+	public static BufferedImage portal1;
+	public static BufferedImage portal2;
+	public static BufferedImage portal3;
+	public static BufferedImage portal4;
+	public static BufferedImage portal5;
+	public static BufferedImage portal6;
+	public static BufferedImage portal7;
+	public static BufferedImage portal8;
+	
 	public static BufferedImage dirt;
 	public static BufferedImage rock;
 	/*loads images. No parameters or return types. 
@@ -16,7 +27,19 @@ public class Assests
 	public static void init() 
 	{
 		player = ImageLoader.loadImage("/textures/LC2.png");
-		portal =  ImageLoader.loadImage("/textures/portal.jpg");
+		
+		// portal texture 
+		portal0 =  ImageLoader.loadImage("/textures/portalTexture/portal0.jpg");
+		portal1 =  ImageLoader.loadImage("/textures/portalTexture/portal1.jpg");
+		portal2 =  ImageLoader.loadImage("/textures/portalTexture/portal2.jpg");
+		portal3 =  ImageLoader.loadImage("/textures/portalTexture/portal3.jpg");
+		portal4 =  ImageLoader.loadImage("/textures/portalTexture/portal4.jpg");
+		portal5 =  ImageLoader.loadImage("/textures/portalTexture/portal5.jpg");
+		portal6 =  ImageLoader.loadImage("/textures/portalTexture/portal6.jpg");
+		portal7 =  ImageLoader.loadImage("/textures/portalTexture/portal7.jpg");
+		portal8 =  ImageLoader.loadImage("/textures/portalTexture/portal8.jpg");
+
+
 		dirt =  ImageLoader.loadImage("/textures/Dirt.png");
 		rock =  ImageLoader.loadImage("/textures/rock.png");
 	}

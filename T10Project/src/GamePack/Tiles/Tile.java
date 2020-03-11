@@ -5,12 +5,14 @@ package GamePack.Tiles;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import GamePack.Tiles.PortalTiles.portalTile0;
+
 public class Tile 
 { 
 	
 	//all Tiles in the game 
 	public static Tile[] tiles= new Tile[256];
-	public static Tile portal = new portalTile(0);
+	public static Tile portal = new portalTile0(0);
 	public static Tile dirt = new dirtTile(1);
 	public static Tile rock = new rockTile(2);
 	
@@ -24,7 +26,7 @@ public class Tile
 	
 	/*Constructor for Tile
 	 * @param BufferedImage texture, takes an image to display on screen
-	 * @param id, takes a given id depending on weather tle is dirt, portal, rock, etc. 
+	 * @param id, takes a given id depending on weather tile is dirt, portal, rock, etc. 
 	 */
 	public Tile(BufferedImage texture, int id)
 	{

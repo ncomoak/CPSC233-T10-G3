@@ -1,18 +1,20 @@
 //https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
 //Video: 16
-package GamePack.Tiles;
+package GamePack.Tiles.PortalTiles;
 
 
+import GamePack.Tiles.Tile;
 import GamePack.gfx.Assests;
 
-public class portalTile extends Tile 
+public class portalTile8 extends Tile 
 {
 	/*Constructor for Portal tile class. 
 	 * @param id
 	 */
-	public portalTile(int id) 
+	public portalTile8(int id) 
 	{
-		super(Assests.portal, id);
+		super(Assests.portal8, id);
 	}
 
 }
+
