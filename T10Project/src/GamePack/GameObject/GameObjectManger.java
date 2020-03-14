@@ -16,6 +16,7 @@ public class GameObjectManger
 	
 	private ArrayList<GameObject> gameObjects;
 	
+	// TODO Java docs 
 	//Render Sorter 
 	private Comparator<GameObject> renderSorter = new Comparator<GameObject>() 
 	{
@@ -29,6 +30,7 @@ public class GameObjectManger
 		}
 	};
 	
+	// TODO Java docs 
 	public GameObjectManger(Handler handler, Player player)
 	{
 		this.handler = handler;
@@ -40,6 +42,7 @@ public class GameObjectManger
 		
 	}
 	
+	// TODO Java docs 
 	public  void tick() 
 	{
 		//Runs through and checks every gameObject 
@@ -57,6 +60,7 @@ public class GameObjectManger
 		gameObjects.sort(renderSorter);
 	} 
 	
+	// TODO Java docs 
 	public  void render(Graphics g) 
 	{
 		for(int i = 0; i < gameObjects.size(); i++)
@@ -66,6 +70,7 @@ public class GameObjectManger
 		}
 	}
 	
+	// TODO Java docs 
 	public void addGameObject(GameObject newGameObject)
 	{
 		gameObjects.add(newGameObject);
@@ -74,31 +79,37 @@ public class GameObjectManger
 	
 	//GETTERS AND SETTERS
 
+	// TODO Java docs 
 	public Handler getHandler()
 	{
 		return handler;
 	}
 
+	// TODO Java docs 
 	public void setHandler(Handler handler)
 	{
 		this.handler = handler;
 	}
 
+	// TODO Java docs 
 	public Player getPlayer() 
 	{
 		return player;
 	}
 
+	// TODO Java docs 
 	public void setPlayer(Player player)
 	{
 		this.player = player;
 	}
 
+	// TODO Java docs 
 	public ArrayList<GameObject> getGameObjects() 
 	{
 		return gameObjects;
 	}
 
+	// TODO Java docs 
 	public void setGameObjects(ArrayList<GameObject> gameObjects)
 	{
 		this.gameObjects = gameObjects;

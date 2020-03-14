@@ -71,6 +71,7 @@ public abstract class GameObject
 	// TODO Java docs 
 	protected abstract void die();
 	
+	// TODO Java docs 
 	public void hurt (int damageAmount)
 	{
 		health -= damageAmount;
@@ -106,6 +107,7 @@ public abstract class GameObject
 		return false;
 	}
 	
+	// TODO Java docs 
 	public Rectangle getCollisionBound(float xOffset, float yOffset)
 	{
 		return new Rectangle((int)(x + xOffset), (int)(y + yOffset), bounds.width, bounds.height);

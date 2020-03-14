@@ -3,8 +3,10 @@
 package GamePack.GameObject.Characters;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import GamePack.Handler;
+import GamePack.GameObject.GameObject;
 import GamePack.gfx.Assests;
 
 // The Player
@@ -12,6 +14,9 @@ public class Player extends Characters
 {
 	private int xCoor = -1;
 	private int yCoor = -1;
+	
+	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+	
 	/*Constructor, sets up a new Player
 	* @param Handler, handler. the game handler.
 	* @param float, x. the x position of the Game Object.
@@ -43,8 +48,11 @@ public class Player extends Characters
 		getInput(); 
 		move();
 		handler.getGameCamera().centerOnGameObject(this);
+		checkAttacks();
 	}
 	
+	
+
 	/* This Method is called every frame and it show the  renders all the graphics.
 	* @return void,
 	*/
@@ -53,7 +61,7 @@ public class Player extends Characters
 		g.drawImage(Assests.player,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
 	}
 	
-	
+	// TODO Java docs 
 	public static void render() 
 	{
 		System.out.println("P");
@@ -62,6 +70,70 @@ public class Player extends Characters
 	// Methods
 	
 	//TODO Java Doc
+	private void checkAttacks() 
+	{
+		attackTimer += System.currentTimeMillis() - lastAttackTimer;
+		lastAttackTimer =  System.currentTimeMillis();
+		
+		if(attackTimer < attackCooldown)
+		{
+			return;
+		}
+		Rectangle playerCollisonBounds = getCollisionBound(0, 0);
+		Rectangle attackBounds = new Rectangle();
+		int attackRange = 20;
+		
+		attackBounds.width = attackRange;
+		attackBounds.height = attackRange;
+		
+		if(handler.getKeyManger().attackUp)
+		{
+			attackBounds.x = playerCollisonBounds.x + playerCollisonBounds.width / 2 - attackRange/2; 
+			attackBounds.y = playerCollisonBounds.y - attackRange; 
+
+		}
+		else if(handler.getKeyManger().attackDown)
+		{
+			attackBounds.x = playerCollisonBounds.x + playerCollisonBounds.width / 2 - attackRange/2; 
+			attackBounds.y = playerCollisonBounds.y + attackRange + playerCollisonBounds.height;
+		}
+		else if(handler.getKeyManger().attackLeft)
+		{
+			attackBounds.x = playerCollisonBounds.x - attackRange; 
+			attackBounds.y = playerCollisonBounds.y + playerCollisonBounds.height / 2 - attackRange/2;
+		}
+		else if(handler.getKeyManger().attackRight)
+		{
+			attackBounds.x = playerCollisonBounds.x + playerCollisonBounds.width; 
+			attackBounds.y = playerCollisonBounds.y + playerCollisonBounds.height / 2 - attackRange/2;
+		}
+		else
+		{
+			return;
+		}
+		
+		attackTimer = 0;
+		
+		for(GameObject e : handler.getWorld().getGameObjectManger().getGameObjects())
+		{
+			//if the GameObject it is looking at is it's self. move on to the next GameObject 
+			if(e.equals(this))
+			{
+				continue;
+			}
+			
+			//if the GameObject is about to collied any other GameObject returns true
+			if(e.getCollisionBound(0, 0).intersects(attackBounds))
+			{
+				//deal 1 damage
+				e.hurt(1);
+				return;
+			}
+		}
+	}
+	
+	//TODO Java Doc
+	@Override
 	protected void die() 
 	{
 		System.out.println("YOU DIED");
@@ -101,22 +173,25 @@ public class Player extends Characters
 	}
 	
 	
-	
+	// TODO Java docs 
 	public int getxCoor() 
 	{
 		return xCoor;
 	}
 
+	// TODO Java docs 
 	public void setxCoor(int xCoor)
 	{
 		this.xCoor = xCoor;
 	}
 
+	// TODO Java docs 
 	public int getyCoor()
 	{
 		return yCoor;
 	}
 
+	// TODO Java docs 
 	public void setyCoor(int yCoor) 
 	{
 		this.yCoor = yCoor;
