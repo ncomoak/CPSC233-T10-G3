@@ -1,5 +1,5 @@
 //https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
-//Video: 13,15,21,22
+//Video: 13,15,21,22,28
 package GamePack.GameObject.Characters;
 
 import GamePack.Handler;
@@ -8,12 +8,10 @@ import GamePack.Tiles.Tile;
 //An living creature in the game will inherit this abstract class
 public abstract class Characters extends GameObject
 {
-	public static final int DEFAULT_HEALTH = 10;
 	public static final float DEFAULT_SPEED = 5.0f;
 	public static final int DEFAULT_CHARACTER_WIDTH = 43*2;
 	public static final int DEFAULT_CHARACTER_HEIGHT = 58*2;
 	
-	protected int health;
 	protected float speed;
 	protected float xMove, yMove;	
 	
@@ -29,7 +27,6 @@ public abstract class Characters extends GameObject
 	public Characters(Handler handler,float x, float y, int width, int height) 
 	{
 		super(handler,x, y, width, height);
-		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;
@@ -51,8 +48,14 @@ public abstract class Characters extends GameObject
 	*/
 	public void move()
 	{
-		moveX();
-		moveY();
+		if(!checkGameObjectCollision(xMove, 0f))
+		{
+			moveX();
+		}
+		if(!checkGameObjectCollision(0f, yMove))
+		{
+			moveY();
+		}
 	}
 	
 	/* Handles X  Movement 
@@ -142,23 +145,6 @@ public abstract class Characters extends GameObject
 	
 	
 	//Getters and Setters
-	
-	/*gets the health of the Character.  
-	* @return int, The health of the Character.
-	*/
-	public int getHealth() 
-	{
-		return health;
-	}
-	/*sets the health of the Character. 
-	* @param int, health. The health of the Character.
-	* @return void,
-	*/
-	public void setHealth(int health) 
-	{
-		this.health = health;
-	}
-
 	
 	/*gets the speed of the Character.  
 	* @return float, The speed of the Character.

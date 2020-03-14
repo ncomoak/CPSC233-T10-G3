@@ -10,16 +10,27 @@ public class KeyMangerGUI implements KeyListener
 {
 	//list of keys
 	private boolean[] keys;
-
+	//MOVEMENT
 	public boolean up,down, left,right;
+	//ATTACK
+	public boolean attackUp, attackDown, attackLeft, attackRight;
+	
+	
 	/*Checks to see if any keys have been pressed. No return types or parameters. 
 	*/
 	public void tick() 
 	{
+		//MOVMENT
 		up = keys[KeyEvent.VK_W];
 		left = keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_D];
 		down = keys[KeyEvent.VK_S];
+		
+		//ATTACK
+		attackUp = keys[KeyEvent.VK_UP];
+		attackDown = keys[KeyEvent.VK_DOWN];
+		attackLeft = keys[KeyEvent.VK_LEFT];
+		attackRight = keys[KeyEvent.VK_RIGHT];
 	}
 	/*Constructor to initizalize an array of keys. 
 	*/
