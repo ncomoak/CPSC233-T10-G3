@@ -1,5 +1,5 @@
 //https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
-//Video: 13,15,21
+//Video: 13,15,21,31
 package GamePack.GameObject;
 
 import java.awt.Graphics;
@@ -20,6 +20,14 @@ public abstract class GameObject
 	//Collision Bounds
 	protected Rectangle bounds;
 	
+	//Health
+	public static final int DEFAULT_HEALTH = 10;
+	protected int health;
+	
+	//If The gameObject is Active (On the Screen)
+	protected boolean isActive = true;
+
+
 	/* Sets up a new GameObject
 	* @param Handler, handler. the game handler.
 	* @param float, x. the x position of the Game Object.
@@ -39,6 +47,9 @@ public abstract class GameObject
 		this.height = height;
 		
 		bounds = new Rectangle(0,0,width, height);
+		
+		health = DEFAULT_HEALTH;
+
 	}
 	
 	public GameObject()
@@ -56,8 +67,68 @@ public abstract class GameObject
 	* @return void,
 	*/
 	public abstract void render(Graphics g);
+	
+	// TODO Java docs 
+	protected abstract void die();
+	
+	public void hurt (int damageAmount)
+	{
+		health -= damageAmount;
+		
+		// if the GameObject has died
+		if(health <= 0)
+		{
+			setActive(false);
+			die();
+		}
+	}
+	
+	
 
+	// TODO Java Docs
+	//if the GameObject is about to collied any other GameObject returns true
+	public boolean checkGameObjectCollision(float xOffset, float yOffset)
+	{
+		for(GameObject e : handler.getWorld().getGameObjectManger().getGameObjects())
+		{
+			//if the GameObject it is looking at is it's self. move on to the next GameObject 
+			if(e.equals(this))
+			{
+				continue;
+			}
+			
+			//if the GameObject is about to collied any other GameObject returns true
+			if(e.getCollisionBound(0, 0).intersects(getCollisionBound(xOffset, yOffset)))
+			{
+				return true;	
+			}
+		}
+		return false;
+	}
+	
+	public Rectangle getCollisionBound(float xOffset, float yOffset)
+	{
+		return new Rectangle((int)(x + xOffset), (int)(y + yOffset), bounds.width, bounds.height);
+	}
+	
 	//Getters and Setters
+	
+	/*gets the health of the Character.  
+	* @return int, The health of the Character.
+	*/
+	public int getHealth() 
+	{
+		return health;
+	}
+	/*sets the health of the Character. 
+	* @param int, health. The health of the Character.
+	* @return void,
+	*/
+	public void setHealth(int health) 
+	{
+		this.health = health;
+	}
+
 	
 	/*gets the x position of the Game Object. 
 	* @return float, x position of the Game Object.
@@ -121,5 +192,16 @@ public abstract class GameObject
 	public void setHeight(int height)
 	{
 		this.height = height;
+	}
+	
+	// TODO Java Docs
+	public boolean isActive() 
+	{
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) 
+	{
+		this.isActive = isActive;
 	}
 }

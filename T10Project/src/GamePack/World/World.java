@@ -1,9 +1,11 @@
 //https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ&index=1
-//Video: 17,18,19,20,22,24
+//Video: 17,18,19,20,22,24,26
 package GamePack.World;
 
 import java.awt.Graphics;
 import GamePack.Handler;
+import GamePack.GameObject.GameObjectManger;
+import GamePack.GameObject.Characters.Player;
 import GamePack.Tiles.Tile;
 import GamePack.utils.Utils;
 
@@ -14,6 +16,9 @@ public class World
 	private int spawnX, spawnY; 
 	private int[][] worldTiles;
 	
+	//GameObjects
+	private GameObjectManger gameObjectManger;
+	
 	/*Constructor for world
 	 * @param Handler handler
 	 * @param String path, path for a world file. 
@@ -21,8 +26,13 @@ public class World
 	public World(Handler handler, String path)
 	{
 		this.handler = handler;
+		gameObjectManger = new GameObjectManger(handler, new Player(handler, 100,100));
+		
 		//creates the world
 		loadWorld(path);	
+		
+		gameObjectManger.getPlayer().setX(spawnX);
+		gameObjectManger.getPlayer().setY(spawnY);
 	}
 	
 	
@@ -31,6 +41,7 @@ public class World
 	 */
 	public void tick()
 	{
+		gameObjectManger.tick();
 		
 	}
 	/*Renders all of the tiles in the world file
@@ -52,6 +63,9 @@ public class World
 				getTile(x, y).render(g, (int)(x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 			}
 		}
+		
+		//GameObjects
+		gameObjectManger.render(g);
 	}
 		
 	/*Loads world File
@@ -149,4 +163,10 @@ public class World
 	{
 		return height;
 	}
+
+	// TODO
+	public GameObjectManger getGameObjectManger() 
+	{
+		return gameObjectManger;
+	}		
 }

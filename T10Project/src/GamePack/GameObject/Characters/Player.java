@@ -54,11 +54,18 @@ public class Player extends Characters
 	}
 	
 	
-	public static void render() {
+	public static void render() 
+	{
 		System.out.println("P");
 	}
 	
 	// Methods
+	
+	//TODO Java Doc
+	protected void die() 
+	{
+		System.out.println("YOU DIED");
+	}
 	
 	/*gets the KeyBoard input and decides if the play should move.  
 	* @return void, 
@@ -114,5 +121,4 @@ public class Player extends Characters
 	{
 		this.yCoor = yCoor;
 	}
-
 }
