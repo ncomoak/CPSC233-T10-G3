@@ -168,5 +168,11 @@ public class World
 	public GameObjectManger getGameObjectManger() 
 	{
 		return gameObjectManger;
+	}
+
+	//TODO java docs
+	public int[][] getWorldTiles() 
+	{
+		return worldTiles;
 	}		
 }
