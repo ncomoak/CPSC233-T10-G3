@@ -3,9 +3,12 @@
 package GamePack.World;
 
 import java.awt.Graphics;
+
+import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.GameObjectManger;
 import GamePack.GameObject.Characters.Player;
+import GamePack.GameObject.Characters.Monsters.Monster;
 import GamePack.Tiles.Tile;
 import GamePack.utils.Utils;
 
@@ -27,6 +30,10 @@ public class World
 	{
 		this.handler = handler;
 		gameObjectManger = new GameObjectManger(handler, new Player(handler, 100,100));
+		
+		//adding enemy 
+		Monster testEnemy = new Monster(handler, 250, 150);
+		gameObjectManger.addGameObject(testEnemy);
 		
 		//creates the world
 		loadWorld(path);	
@@ -73,6 +80,20 @@ public class World
 	 */
 	private void loadWorld(String path)
 	{
+		if(!Game.devTestMode)
+		{
+			populateWorldTiles(path);
+		}
+		else
+		{
+			populateWorldTiles("res/Worlds/TestWorld.txt");
+		}
+		
+		
+	}
+	
+	private void populateWorldTiles(String path)
+	{
 		//gets the world file as a String 
 		String file = Utils.loadFileAsString(path);
 		//Splits the strings into an array list
@@ -93,7 +114,6 @@ public class World
 				worldTiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]); 
 			}
 		}
-		
 	}
 	
 	

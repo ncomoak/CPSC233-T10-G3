@@ -26,7 +26,7 @@ public class GameStateText
 	
 	public GameStateText(String path)
 	{
-		loadWorld(path);
+		//loadWorld(path);
 		keyMangerText = new KeyMangerText();
 	}
 	
