@@ -6,7 +6,11 @@ import java.awt.image.BufferedImage;
 // Loads and initializes all the assets for the game 
 public class Assests 
 {
-	public static BufferedImage player;
+	//Player
+		public static BufferedImage player;
+	
+	//Enemy
+	public static BufferedImage enemy;
 	
 	// portal texture 
 	public static BufferedImage portal0;
@@ -26,7 +30,11 @@ public class Assests
 	*/
 	public static void init() 
 	{
-		player = ImageLoader.loadImage("/textures/LC2.png");
+		//Player
+		player = ImageLoader.loadImage("/textures/CharacterTexture/playerTextures/Player.png");
+		
+		//Enemy
+		enemy = ImageLoader.loadImage("/textures/CharacterTexture/enemyTextures/Enemy.png");
 		
 		// portal texture 
 		portal0 =  ImageLoader.loadImage("/textures/portalTexture/portal0.jpg");
@@ -40,7 +48,7 @@ public class Assests
 		portal8 =  ImageLoader.loadImage("/textures/portalTexture/portal8.jpg");
 
 
-		dirt =  ImageLoader.loadImage("/textures/Dirt.png");
-		rock =  ImageLoader.loadImage("/textures/rock.png");
+		dirt =  ImageLoader.loadImage("/textures/tileTexture/Dirt.png");
+		rock =  ImageLoader.loadImage("/textures/tileTexture/Rock.png");
 	}
 }
