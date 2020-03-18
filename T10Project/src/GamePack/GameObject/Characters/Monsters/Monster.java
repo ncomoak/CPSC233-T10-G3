@@ -1,5 +1,8 @@
 package GamePack.GameObject.Characters.Monsters;
+import java.awt.Color;
 import java.awt.Graphics;
+
+import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.Characters.Characters;
 import GamePack.gfx.Assests;
@@ -96,10 +99,10 @@ public class Monster extends Characters
 	{
 		super(handler, x, y, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
 		
-		bounds.x =  0;
-		bounds.y =  0;
-		bounds.width = Characters.DEFAULT_CHARACTER_WIDTH;
-		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT;
+		bounds.x =  10;
+		bounds.y =  10;
+		bounds.width = (int) (Characters.DEFAULT_CHARACTER_WIDTH/1.5);
+		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT - 20;
 	}
 	
 	//I noticed this class doesn't have a constructor, so I'm going to implement one. 
@@ -128,6 +131,12 @@ public class Monster extends Characters
 	public void render(Graphics g) 
 	{
 		g.drawImage(Assests.enemy,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
+		
+		if(Game.devTestMode)
+		{
+			g.setColor(Color.RED);
+			g.drawRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()), (int)(y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width,bounds.height);
+		}
 	}
 	
 	

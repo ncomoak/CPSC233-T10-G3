@@ -2,9 +2,11 @@
 //Video: 13,14,15,19,21,22,23
 package GamePack.GameObject.Characters;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.GameObject;
 import GamePack.gfx.Assests;
@@ -27,9 +29,9 @@ public class Player extends Characters
 	{
 		super(handler, x, y, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
 		
-		bounds.x =  0;
-		bounds.y =  0;
-		bounds.width = Characters.DEFAULT_CHARACTER_WIDTH  - 20;
+		bounds.x = 10;
+		bounds.y = 10;
+		bounds.width = (int) (Characters.DEFAULT_CHARACTER_WIDTH/1.5);
 		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT - 20;
 	}
 	
@@ -59,6 +61,12 @@ public class Player extends Characters
 	public void render(Graphics g) 
 	{
 		g.drawImage(Assests.player,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
+		
+		if(Game.devTestMode)
+		{
+			g.setColor(Color.BLUE);
+			g.drawRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()), (int)(y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width,bounds.height);
+		}
 	}
 	
 	// TODO Java docs 
