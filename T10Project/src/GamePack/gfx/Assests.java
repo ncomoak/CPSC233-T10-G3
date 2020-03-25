@@ -37,15 +37,15 @@ public class Assests
 		enemy = ImageLoader.loadImage("/textures/CharacterTexture/enemyTextures/Enemy.png");
 		
 		// portal texture 
-		portal0 =  ImageLoader.loadImage("/textures/portalTexture/portal0.jpg");
-		portal1 =  ImageLoader.loadImage("/textures/portalTexture/portal1.jpg");
-		portal2 =  ImageLoader.loadImage("/textures/portalTexture/portal2.jpg");
-		portal3 =  ImageLoader.loadImage("/textures/portalTexture/portal3.jpg");
-		portal4 =  ImageLoader.loadImage("/textures/portalTexture/portal4.jpg");
-		portal5 =  ImageLoader.loadImage("/textures/portalTexture/portal5.jpg");
-		portal6 =  ImageLoader.loadImage("/textures/portalTexture/portal6.jpg");
-		portal7 =  ImageLoader.loadImage("/textures/portalTexture/portal7.jpg");
-		portal8 =  ImageLoader.loadImage("/textures/portalTexture/portal8.jpg");
+		portal0 =  ImageLoader.loadImage("/textures/portalTexture/portal0.png");
+		portal1 =  ImageLoader.loadImage("/textures/portalTexture/portal1.png");
+		portal2 =  ImageLoader.loadImage("/textures/portalTexture/portal2.png");
+		portal3 =  ImageLoader.loadImage("/textures/portalTexture/portal3.png");
+		portal4 =  ImageLoader.loadImage("/textures/portalTexture/portal4.png");
+		portal5 =  ImageLoader.loadImage("/textures/portalTexture/portal5.png");
+		portal6 =  ImageLoader.loadImage("/textures/portalTexture/portal6.png");
+		portal7 =  ImageLoader.loadImage("/textures/portalTexture/portal7.png");
+		portal8 =  ImageLoader.loadImage("/textures/portalTexture/portal8.png");
 
 
 		dirt =  ImageLoader.loadImage("/textures/tileTexture/Dirt.png");

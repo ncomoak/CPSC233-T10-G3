@@ -16,7 +16,7 @@ import GamePack.gfx.GameCamera;
 public class Game implements Runnable 
 {
 	//Change to switch to test mode 
-	public static boolean devTestMode = true;
+	public static boolean devTestMode = false;
 	
 	//Set Up
 	private DisplayGUI displayGUI;
