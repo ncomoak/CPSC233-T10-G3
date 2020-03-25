@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import GamePack.Handler;
 import GamePack.GameObject.Characters.Characters;
+import GamePack.gfx.Assests;
 
 // how  attack 
 //when the player is in range the monster moves and attacks and the players health goes down 
@@ -15,6 +16,7 @@ import GamePack.GameObject.Characters.Characters;
 
 public class Monster extends Characters {
 
+	
 	private int lootTable;
 	private int experience;
 	private int coinValue;
@@ -103,10 +105,15 @@ public class Monster extends Characters {
 		setLootTable(monster.lootTable);
 		setExperience(monster.experience);
 		setCoinValue(monster.coinValue);
+		setLastDirection(monster.getLastDirection());
 	}
 	
-	public Monster(Handler handler, int xCoor, int yCoor) {
-		super(handler, (float)xCoor, (float)yCoor, 20, 20);
+	public Monster(Handler handler, int xCoor, int yCoor, int lootTable, int experinece, int coinValue) {
+		super(handler, xCoor, yCoor, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
+		setLootTable(lootTable);
+		setExperience(experience);
+		setCoinValue(coinValue);
+		setLastDirection("n");
 		
 	}
 
@@ -114,7 +121,6 @@ public class Monster extends Characters {
 	public void tick() 
 	{
 		getInput();
-		move();
 	}
 
 
@@ -138,7 +144,7 @@ public class Monster extends Characters {
 	}
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		g.drawImage(Assests.enemy,(int)super.x, (int)super.y, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT, null);
 		
 	}
 	

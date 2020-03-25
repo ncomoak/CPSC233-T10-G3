@@ -7,7 +7,6 @@ public class MonsterAI{
 	
 	private Monster monster; //During implementation, pass in a world object IDENTICAL TO THE ONE FOR THE GAME. 
 	private String lastDirection;//The last direction that the monster moved in. In order to initialize the monster AI, this is set to 'n'
-	
 	public MonsterAI(Monster monster) {
 		this.monster = monster;
 		setLastDirection("n");
@@ -32,48 +31,63 @@ public class MonsterAI{
 	
 	
 	public String move() {
+		System.out.println("Method has been called.");
 		ArrayList<String> possibleDirections = new ArrayList<>();
-		if(!monster.collisionWithTile(0,-1)) {
+		int intMonsterXCoor = (int)(monster.getX()/64 - ((monster.getX())/64) % 1);
+		int intMonsterYCoor = (int)(monster.getY()/64 - ((monster.getY())/64) % 1);
+		if(!monster.collisionWithTile(intMonsterXCoor, intMonsterYCoor - 1)) {
 			possibleDirections.add("North");
 		}
-		if(!monster.collisionWithTile(0, 1)) {
+		if(!monster.collisionWithTile(intMonsterXCoor, intMonsterYCoor + 1)) {
 			possibleDirections.add("South");
 		}
 		
-		if(!monster.collisionWithTile(-1, 0)) {
+		if(!monster.collisionWithTile(intMonsterXCoor-1, intMonsterYCoor)) {
 			possibleDirections.add("West");
 		}
-		if(!monster.collisionWithTile(0, 1)) {
+		if(!monster.collisionWithTile(intMonsterXCoor - 1, intMonsterYCoor)) {
 			possibleDirections.add("East");
 		}
-		
+		System.out.println(possibleDirections.size());
 		Random random = new Random();
 		int direction = 0;
 		if(possibleDirections.contains(lastDirection)) {
 			direction = possibleDirections.indexOf(lastDirection);
+			System.out.println("Last direction is: " + lastDirection);
+			return lastDirection;
 		}
-		else {
+		else if (possibleDirections.size() != 0) {
 			direction = random.nextInt(possibleDirections.size());
-		}
-		if(possibleDirections.get(direction).equals("North")) {
-			monster.setxMove(-monster.getSpeed());
-			return "North";
-		}
-		else if(possibleDirections.get(direction).equals("South")) {
-			monster.setyMove(monster.getSpeed());
-			return "South";
-		}
-		else if(possibleDirections.get(direction).equals("West")) {
-			monster.setxMove(-monster.getSpeed());
-			return "West";
-		}
-		else {
-			monster.setxMove(monster.getSpeed());
-			return "East";
-		}
+			if(possibleDirections.get(direction).equals("North")) {
+				monster.setyMove(-monster.getSpeed());
+				monster.setxMove(0);
+				monster.move();
+				return "North";
+			}
+			else if(possibleDirections.get(direction).equals("South")) {
+				monster.setyMove(monster.getSpeed());
+				monster.setxMove(0);
+				monster.move();
+				return "South";
+			}
+			else if(possibleDirections.get(direction).equals("West")) {
+				monster.setxMove(-monster.getSpeed());
+				monster.setyMove(0);
+				monster.move();
+				return "West";
+			}
+			else {
+				monster.setxMove(monster.getSpeed());
+				monster.setyMove(0);
+				monster.move();
+				return "East";
+			}
 
-	}
+		}
+		System.out.println("IF YOUR READING THIS, SOMETHING HAS GONE TERRIBLY WRONG!");
+		return "n";
 	
+	}
 }
 
 
