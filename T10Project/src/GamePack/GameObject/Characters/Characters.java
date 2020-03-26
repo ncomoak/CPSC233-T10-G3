@@ -138,7 +138,7 @@ public abstract class Characters extends GameObject
 	* @param int, y. checks if there is a collision in the y.
 	* @return boolean, checks if there is a collision with a given tile.
 	*/
-	protected boolean collionWithTile(int x, int y)
+	public boolean collionWithTile(int x, int y)
 	{
 		return handler.getWorld().getTile(x, y).isSolid();
 	}

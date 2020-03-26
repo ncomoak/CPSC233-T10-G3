@@ -1,4 +1,5 @@
 package GamePack.GameObject.Characters.Monsters;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -6,7 +7,6 @@ import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.Characters.Characters;
 import GamePack.gfx.Assests;
-
 
 // how  attack 
 //when the player is in range the monster moves and attacks and the players health goes down 
@@ -16,14 +16,13 @@ import GamePack.gfx.Assests;
 
 //how to follow the player AI 
 
-public class Monster extends Characters
-{
+public class Monster extends Characters {
 
+	
 	private int lootTable;
 	private int experience;
 	private int coinValue;
-	private int xCoor;
-	private int yCoor;
+	private String lastDirection = "n";
 	
 
 	/*gets lootTable
@@ -68,43 +67,26 @@ public class Monster extends Characters
 	{
 		this.coinValue = coinValue;
 	}
-	/*gets XCoordinate
-	 * @return xCoor;
-	 */
-	public int getxCoor() {
-		return xCoor;
+	
+	public String getLastDirection() {
+		return lastDirection;
 	}
-	/*sets xCoordinate
-	 * @param xCoor
-	 */
-	public void setxCoor(int xCoor) {
-		this.xCoor = xCoor;
-	}
-	/*gets yCoordinate
-	 * @return yCoor
-	 */
-	public int getyCoor() {
-		return yCoor;
-	}
-	/*sets yCoordinate
-	 * @param yCoor
-	 */
-	public void setyCoor(int yCoor) {
-		this.yCoor = yCoor;
+	
+	private void setLastDirection(String lastDirection) {
+		if(lastDirection.equals("North") || lastDirection.equals("South")){
+			this.lastDirection = lastDirection;
+		}
+		else if(lastDirection.equals("East") || lastDirection.equals("West")) {
+			this.lastDirection = lastDirection;
+		}
+		else {
+			lastDirection = "n";
+		}
 	}
 	
 	
 	
-	public Monster(Handler handler, float x, float y)
-	{
-		super(handler, x, y, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
-		
-		bounds.x =  10;
-		bounds.y =  10;
-		bounds.width = (int) (Characters.DEFAULT_CHARACTER_WIDTH/1.5);
-		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT - 20;
-	}
-	
+
 	//I noticed this class doesn't have a constructor, so I'm going to implement one. 
 	//-Rachel. 
 	
@@ -113,23 +95,47 @@ public class Monster extends Characters
 	 * @param int experience
 	 */
 	
-	public Monster(int lootTable, int experience, int coinValue) 
-	{
+	//This is the real constructor! 
+	
+	public Monster(Handler handler, int xCoor, int yCoor, int lootTable, int experinece, int coinValue) {
+		super(handler, xCoor, yCoor, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
 		setLootTable(lootTable);
 		setExperience(experience);
 		setCoinValue(coinValue);
+		setLastDirection("n");
+		
 	}
 
 //gets movement of the monster and moves the monster 
 	public void tick() 
 	{
+		getInput();
 		move();
 	}
 
 
-//puts graphic on the screen
-	public void render(Graphics g) 
+//puts graphic on the screen and centers object 
+	
+	public void die() {
+		
+	}
+
+
+//gets the KeyBoard input and decides if the play should move.
+//I need to rewrite this, because for the MonsterAI to work, we need to get input from the class instead of the keyboard. 
+//-Rachel.
+	
+	
+	private void getInput()
 	{
+		MonsterAI monsterAI = new MonsterAI(this, lastDirection);
+		setLastDirection(monsterAI.move());
+		
+	}
+	
+
+	@Override
+	public void render(Graphics g) {
 		g.drawImage(Assests.enemy,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
 		
 		if(Game.devTestMode)
@@ -137,11 +143,10 @@ public class Monster extends Characters
 			g.setColor(Color.RED);
 			g.drawRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()), (int)(y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width,bounds.height);
 		}
-	}
-	
-	
-	public void die() 
-	{
+
+
 		
 	}
+	
+	
 }
