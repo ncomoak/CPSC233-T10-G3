@@ -8,7 +8,6 @@ import java.util.Comparator;
 
 import GamePack.Handler;
 import GamePack.GameObject.Characters.Player;
-import GamePack.GameObject.Characters.Monsters.Monster;
 
 public class GameObjectManger 
 {

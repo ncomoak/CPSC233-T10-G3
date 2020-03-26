@@ -31,13 +31,25 @@ public class World
 		this.handler = handler;
 		gameObjectManger = new GameObjectManger(handler, new Player(handler, 100,100));
 		
-		//adding enemy 
-		Monster enemy = new Monster(handler, 250,150, 10, 10, 10);
-		gameObjectManger.addGameObject(enemy);
+		
 		
 		//creates the world
-		loadWorld(path);	
+		loadWorld(path);
 		
+		//add enemy. 
+		int testEnemyX = 0;
+		int testEnemyY = 0;
+		if(worldTiles[0][1] == 1){
+			testEnemyX = 100;
+			testEnemyY = 300;
+		}
+		else {
+			testEnemyX = 225;
+			testEnemyY = 100;
+		}
+		Monster testEnemy = new Monster(handler, testEnemyX, testEnemyY,10,10,10);
+		
+		gameObjectManger.addGameObject(testEnemy);
 		gameObjectManger.getPlayer().setX(spawnX);
 		gameObjectManger.getPlayer().setY(spawnY);
 	}

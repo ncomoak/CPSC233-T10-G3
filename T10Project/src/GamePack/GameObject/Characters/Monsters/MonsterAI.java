@@ -35,17 +35,17 @@ public class MonsterAI{
 		ArrayList<String> possibleDirections = new ArrayList<>();
 		int intMonsterXCoor = (int)(monster.getX()/64 - ((monster.getX())/64) % 1 + 1);
 		int intMonsterYCoor = (int)(monster.getY()/64 + 1);
-		if(!monster.collisionWithTile(intMonsterXCoor, intMonsterYCoor - 2)) {
+		if(!monster.collionWithTile(intMonsterXCoor, intMonsterYCoor - 2)) {
 			possibleDirections.add("North");
 		}
-		if(!monster.collisionWithTile(intMonsterXCoor, intMonsterYCoor + 1)) {
+		if(!monster.collionWithTile(intMonsterXCoor, intMonsterYCoor + 1)) {
 			possibleDirections.add("South");
 		}
 		
-		if(!monster.collisionWithTile(intMonsterXCoor - 2, intMonsterYCoor)) {
+		if(!monster.collionWithTile(intMonsterXCoor - 2, intMonsterYCoor)) {
 			possibleDirections.add("West");
 		}
-		if(!monster.collisionWithTile(intMonsterXCoor + 1, intMonsterYCoor)) {
+		if(!monster.collionWithTile(intMonsterXCoor + 1, intMonsterYCoor)) {
 			possibleDirections.add("East");
 		}
 		System.out.println(intMonsterXCoor + " " + intMonsterYCoor);
@@ -55,6 +55,7 @@ public class MonsterAI{
 		if(possibleDirections.contains(lastDirection)) {
 			direction = possibleDirections.indexOf(lastDirection);
 			System.out.println("Last direction is: " + lastDirection);
+			monster.move();
 			return lastDirection;
 		}
 		else if (possibleDirections.size() != 0) {
@@ -85,7 +86,6 @@ public class MonsterAI{
 			}
 
 		}
-		System.out.println("IF YOUR READING THIS, SOMETHING HAS GONE TERRIBLY WRONG!");
 		return "n";
 	}
 	
@@ -96,3 +96,5 @@ public class MonsterAI{
 
 
 
+
+		

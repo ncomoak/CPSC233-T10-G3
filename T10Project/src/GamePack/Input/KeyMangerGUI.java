@@ -51,7 +51,6 @@ public class KeyMangerGUI implements KeyListener
 	{
 		//checks if a key has been pressed
 		keys[e.getKeyCode()] = true;
-		System.out.println("KeyPressed has been called. ");
 	}
 	/*Checks to see any given key has been released. 
 	*@Param KeyEvent e, a key to check if it's been released. 
