@@ -149,16 +149,53 @@ public class Maze
                 for(int j = 0; j < mazeList.size();j++){
                 	if(mazeList.get(i).get(j).portal) {
                 		if(mazeList.get(i).get(j).west && mazeList.get(i).get(j).east){
-                        	writer.write("2 0 0 0 2 ");
+                			if(k == 0) {
+                				writer.write("2 3 4 5 2 ");
+                			}
+                        	if(k == 1) {
+                        		writer.write("2 6 7 8 2 ");
+                        	}
+                        	if(k == 2) {
+                        		writer.write("2 9 10 11 2 ");
+                        	}
+               
                         }
                         else if(mazeList.get(i).get(j).west){
-                        	writer.write("2 0 0 0 1 ");
+                        	if(k == 0) {
+                				writer.write("2 3 4 5 1 ");
+                			}
+                        	if(k == 1) {
+                        		writer.write("2 6 7 8 1 ");
+                        	}
+                        	if(k == 2) {
+                        		writer.write("2 9 10 11 1 ");
+                        	}
+               
                         }
                         else if(mazeList.get(i).get(j).east){
-                        	writer.write("1 0 0 0 2 ");
+                        	if(k == 0) {
+                				writer.write("1 3 4 5 2 ");
+                			}
+                        	if(k == 1) {
+                        		writer.write("1 6 7 8 2 ");
+                        	}
+                        	if(k == 2) {
+                        		writer.write("1 9 10 11 2 ");
+                        	}
+               
+                        
                         }
                         else{
-                        	writer.write("0 0 0 1 1 ");
+                        	if(k == 0) {
+                				writer.write("1 3 4 5  1");
+                			}
+                        	if(k == 1) {
+                        		writer.write("1 6 7 8 1 ");
+                        	}
+                        	if(k == 2) {
+                        		writer.write("1 9 10 11 1");
+                        	}
+               
                         }
                 	}
                 	else {

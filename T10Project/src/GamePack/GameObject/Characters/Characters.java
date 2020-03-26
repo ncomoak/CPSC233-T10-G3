@@ -67,7 +67,7 @@ public abstract class Characters extends GameObject
 		{
 			//Checks for collision in the upper and lower right hand side of the bounds  
 			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
-			if(!collionWithTile(tx, (int)(y + bounds.y) / Tile.TILEHEIGHT) && !collionWithTile(tx, (int)(y + bounds.y + bounds.height) / Tile.TILEHEIGHT))
+			if(!collisionWithTile(tx, (int)(y + bounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int)(y + bounds.y + bounds.height) / Tile.TILEHEIGHT))
 			{
 				//Moves the Character right
 				x += xMove;
@@ -82,7 +82,7 @@ public abstract class Characters extends GameObject
 		{
 			//Checks for collision in the upper and lower left hand side of the bounds 
 			int tx = (int) (x + xMove + bounds.x) / Tile.TILEWIDTH;
-			if(!collionWithTile(tx, (int)(y + bounds.y) / Tile.TILEHEIGHT) && !collionWithTile(tx, (int)(y + bounds.y + bounds.height) / Tile.TILEHEIGHT))
+			if(!collisionWithTile(tx, (int)(y + bounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int)(y + bounds.y + bounds.height) / Tile.TILEHEIGHT))
 			{
 				//Moves the Character left
 				x += xMove;
@@ -104,7 +104,7 @@ public abstract class Characters extends GameObject
 		{
 			//Checks for collision in the left and right top side of the bounds 
 			int ty = (int) (y + yMove + bounds.y) / Tile.TILEHEIGHT;
-			if(!collionWithTile((int)(x + bounds.x) / Tile.TILEWIDTH, ty) && !collionWithTile((int)(x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty))
+			if(!collisionWithTile((int)(x + bounds.x) / Tile.TILEWIDTH, ty) && !collisionWithTile((int)(x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty))
 			{
 				//Moves the Character up
 				y += yMove;
@@ -119,7 +119,7 @@ public abstract class Characters extends GameObject
 		{
 			//Checks for collision in the left and right Bottom side of the bounds 
 			int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
-			if(!collionWithTile((int)(x + bounds.x) / Tile.TILEWIDTH, ty) && !collionWithTile((int)(x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty))
+			if(!collisionWithTile((int)(x + bounds.x) / Tile.TILEWIDTH, ty) && !collisionWithTile((int)(x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty))
 			{
 				//Moves the Character down
 				y += yMove;
@@ -138,7 +138,7 @@ public abstract class Characters extends GameObject
 	* @param int, y. checks if there is a collision in the y.
 	* @return boolean, checks if there is a collision with a given tile.
 	*/
-	protected boolean collionWithTile(int x, int y)
+	public boolean collisionWithTile(int x, int y)
 	{
 		return handler.getWorld().getTile(x, y).isSolid();
 	}

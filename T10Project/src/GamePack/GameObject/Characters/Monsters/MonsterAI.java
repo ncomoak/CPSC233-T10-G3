@@ -1,83 +1,98 @@
 package GamePack.GameObject.Characters.Monsters;
-import GamePack.GameObject.Characters.Player;
-import GamePack.World.World;
-import java.util.Random;
+
 import java.util.ArrayList;
-
-
+import java.util.Random;
 
 public class MonsterAI{
 	
-	private  Monster monster;
-	private World world; //During implementation, pass in a world object IDENTICAL TO THE ONE FOR THE GAME. 
-	private Player player; //pass in same player that's used for the game. DO NOT MAKE A COPY OF THE PLAYER. 
-	
-	
-	public MonsterAI(Monster monster, World world, Player player) {
+	private Monster monster; //During implementation, pass in a world object IDENTICAL TO THE ONE FOR THE GAME. 
+	private String lastDirection;//The last direction that the monster moved in. In order to initialize the monster AI, this is set to 'n'
+	public MonsterAI(Monster monster) {
 		this.monster = monster;
-		this.world = world;
-		this.player = player;
+		setLastDirection("n");
 	}
 	
-	public void move() {
-		int monsterX = monster.getxCoor();
-		int monsterY = monster.getyCoor();
-		int[] monsterList = {monsterX, monsterY};
-		ArrayList<int[]> usedCoordinates = new ArrayList<>();
-		findPlayer(monsterList , usedCoordinates);
+	public MonsterAI(Monster monster, String lastDirection) {
+		this.monster = monster;
+		setLastDirection(lastDirection);
+	}
+	
+	private void setLastDirection(String lastDirection) {
+		if(lastDirection.equals("North") || lastDirection.equals("South")){
+			this.lastDirection = lastDirection;
 		}
-		
-
-	public int[] findPlayer(int[]monsterList, ArrayList<int[]>usedCoordinates) {
-		int monsterX = monsterList[0];
-		int monsterY = monsterList[1];
+		else if(lastDirection.equals("East") || lastDirection.equals("West")) {
+			this.lastDirection = lastDirection;
+		}
+		else {
+			lastDirection = "n";
+		}
+	}
+	
+	
+	public String move() {
+		System.out.println("Method has been called.");
 		ArrayList<String> possibleDirections = new ArrayList<>();
-		int[] monsterCoor = {monsterX, monsterY - 1};
-		int[][] worldTiles = world.getWorldTiles();
-		if(monsterX == player.getxCoor() && monsterY == player.getyCoor()) {
-			return usedCoordinates.get(0);
-		}
-		if(monsterY > 0 && worldTiles[monsterX][monsterY - 1] != 2 && !checkForCoorPair(usedCoordinates, monsterCoor) ) {
+		int intMonsterXCoor = (int)(monster.getX()/64 - ((monster.getX())/64) % 1 + 1);
+		int intMonsterYCoor = (int)(monster.getY()/64 + 1);
+		if(!monster.collisionWithTile(intMonsterXCoor, intMonsterYCoor - 2)) {
 			possibleDirections.add("North");
 		}
-		monsterCoor[1] = monsterY + 1;
-		if(monsterY < worldTiles.length && worldTiles[monsterX][monsterY + 1] != 2 && !checkForCoorPair(usedCoordinates, monsterCoor)) {
+		if(!monster.collisionWithTile(intMonsterXCoor, intMonsterYCoor + 1)) {
 			possibleDirections.add("South");
 		}
-		monsterCoor[0] = monsterX - 1;
-		monsterCoor[1] = monsterY;
-		if(monsterX > 0 && worldTiles[monsterX - 1][monsterY] != 2 && !checkForCoorPair(usedCoordinates, monsterCoor)) {
+		
+		if(!monster.collisionWithTile(intMonsterXCoor - 2, intMonsterYCoor)) {
 			possibleDirections.add("West");
 		}
-		monsterCoor[0] = monsterX + 1;
-		if(monsterX < worldTiles.length && worldTiles[monsterX + 1][monsterY] != 2 && !checkForCoorPair(usedCoordinates, monsterCoor)) {
+		if(!monster.collisionWithTile(intMonsterXCoor + 1, intMonsterYCoor)) {
 			possibleDirections.add("East");
 		}
-		monsterCoor[0] = monsterX;
-		
-		if(possibleDirections.size() == 0) {
-			return findPlayer(usedCoordinates.get(usedCoordinates.size() - 1), usedCoordinates);
-		}
+		System.out.println(intMonsterXCoor + " " + intMonsterYCoor);
+		System.out.println(possibleDirections.size());
 		Random random = new Random();
-		int direction = random.nextInt(possibleDirections.size());
-		if(possibleDirections.get(direction).equals("North")){
-			usedCoordinates.add(monsterCoor);
-			monsterCoor[1] = monsterX + 1;
-			return findPlayer(monsterCoor, usedCoordinates);
+		int direction = 0;
+		if(possibleDirections.contains(lastDirection)) {
+			direction = possibleDirections.indexOf(lastDirection);
+			System.out.println("Last direction is: " + lastDirection);
+			return lastDirection;
 		}
-		int[] returnVal = {0,0};
-		return returnVal;
-		
-		
+		else if (possibleDirections.size() != 0) {
+			direction = random.nextInt(possibleDirections.size());
+			if(possibleDirections.get(direction).equals("North")) {
+				monster.setyMove(-monster.getSpeed());
+				monster.setxMove(0);
+				monster.move();
+				return "North";
+			}
+			else if(possibleDirections.get(direction).equals("South")) {
+				monster.setyMove(monster.getSpeed());
+				monster.setxMove(0);
+				monster.move();
+				return "South";
+			}
+			else if(possibleDirections.get(direction).equals("West")) {
+				monster.setxMove(-monster.getSpeed());
+				monster.setyMove(0);
+				monster.move();
+				return "West";
+			}
+			else if(possibleDirections.get(direction).equals("East")){
+				monster.setxMove(monster.getSpeed());
+				monster.setyMove(0);
+				monster.move();
+				return "East";
+			}
+
+		}
+		System.out.println("IF YOUR READING THIS, SOMETHING HAS GONE TERRIBLY WRONG!");
+		return "n";
 	}
 	
-	private static boolean checkForCoorPair(ArrayList<int[]> coorList, int[] pairOfCoor ) {
-		for(int i = 0; i < coorList.size(); i++) {
-			if(pairOfCoor.equals(coorList.get(i))) {
-				return true;
-			}
-		}
-		return false;
-	}
-		
+	
 }
+
+
+
+
+

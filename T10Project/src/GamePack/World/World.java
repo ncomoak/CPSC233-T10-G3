@@ -32,8 +32,8 @@ public class World
 		gameObjectManger = new GameObjectManger(handler, new Player(handler, 100,100));
 		
 		//adding enemy 
-		Monster testEnemy = new Monster(handler, 250, 150);
-		gameObjectManger.addGameObject(testEnemy);
+		Monster enemy = new Monster(handler, 250,150, 10, 10, 10);
+		gameObjectManger.addGameObject(enemy);
 		
 		//creates the world
 		loadWorld(path);	
