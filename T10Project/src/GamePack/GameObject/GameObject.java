@@ -75,6 +75,7 @@ public abstract class GameObject
 	public void hurt (int damageAmount)
 	{
 		health -= damageAmount;
+		System.out.println("Hit");
 		
 		// if the GameObject has died
 		if(health <= 0)

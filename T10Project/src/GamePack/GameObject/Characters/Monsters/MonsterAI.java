@@ -31,7 +31,7 @@ public class MonsterAI{
 	
 	
 	public String move() {
-		System.out.println("Method has been called.");
+		//System.out.println("Method has been called.");
 		ArrayList<String> possibleDirections = new ArrayList<>();
 		int intMonsterXCoor = (int)(monster.getX()/64 - ((monster.getX())/64) % 1 + 1);
 		int intMonsterYCoor = (int)(monster.getY()/64 + 1);
@@ -48,13 +48,13 @@ public class MonsterAI{
 		if(!monster.collionWithTile(intMonsterXCoor + 1, intMonsterYCoor)) {
 			possibleDirections.add("East");
 		}
-		System.out.println(intMonsterXCoor + " " + intMonsterYCoor);
-		System.out.println(possibleDirections.size());
+		//System.out.println(intMonsterXCoor + " " + intMonsterYCoor);
+		//System.out.println(possibleDirections.size());
 		Random random = new Random();
 		int direction = 0;
 		if(possibleDirections.contains(lastDirection)) {
 			direction = possibleDirections.indexOf(lastDirection);
-			System.out.println("Last direction is: " + lastDirection);
+			//System.out.println("Last direction is: " + lastDirection);
 			monster.move();
 			return lastDirection;
 		}
