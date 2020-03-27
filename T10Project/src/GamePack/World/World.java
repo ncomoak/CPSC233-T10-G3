@@ -39,13 +39,13 @@ public class World
 		//add enemy. 
 		int testEnemyX = 0;
 		int testEnemyY = 0;
-		if(worldTiles[0][1] == 1){
-			testEnemyX = 100;
-			testEnemyY = 300;
-		}
-		else {
-			testEnemyX = 225;
-			testEnemyY = 100;
+		for(int x = 0; x < worldTiles.length; x++) {
+			for(int y = 0; y < worldTiles[x].length; y++) {
+				if(worldTiles[x][y] == 6 ) {
+					testEnemyX = x*64;
+					testEnemyY = y*64;
+				}
+			}
 		}
 		Monster testEnemy = new Monster(handler, testEnemyX, testEnemyY,10,10,10);
 		
