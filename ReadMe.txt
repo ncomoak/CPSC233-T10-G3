@@ -11,6 +11,7 @@ If a window opens but the game is not playable(White Screen):
 3. Click add class folder.
 4. Find the res folder and add it.
 
+Description of Project: Player has to solve a randomly generated maze before the monster finds them!
 
 
 
