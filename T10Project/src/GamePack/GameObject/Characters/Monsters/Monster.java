@@ -42,8 +42,7 @@ public class Monster extends Characters
 		setExperience(experience);
 		setCoinValue(coinValue);
 		setLastDirection("n");
-		speed = 1;
-		setSpeed((float)3.0);
+		setSpeed((float)1.5);
 		
 		name = "Monster";
 	}
