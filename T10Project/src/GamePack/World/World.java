@@ -39,7 +39,7 @@ public class World
 		//add enemy. 
 		int testEnemyX = 0;
 		int testEnemyY = 0;
-
+//
 		if(worldTiles[0][1] == 1)
 		{
 			testEnemyX = 100;
