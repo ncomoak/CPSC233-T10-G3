@@ -23,7 +23,9 @@ public class GameStateText
 
 	private String player = "0";
 	private DisplayText displayText;
-	
+	/*Constructor for class.
+	 *@String path
+	 */
 	public GameStateText(String path)
 	{
 		//loadWorld(path);
@@ -31,7 +33,9 @@ public class GameStateText
 	}
 	
 	
-	//Tick and render Method
+	/*Tick method
+	 * 
+	 */
 	public void tick()
 	{
 		String direction = keyMangerText.tick();
@@ -57,14 +61,18 @@ public class GameStateText
 		}
 		
 	}
-	
+	/*Render method
+	 * 
+	 */
 	public void render()
 	{	
 		// render out the world and player movement 
 		DisplayText.render(worldTiles, playerX, playerY);
 	}
 		
-	
+	/*loads world from the world file. 
+	 * @String path, path for world file
+	 */
 	private void loadWorld(String path)
 	{
 		//creates the maze 
@@ -91,7 +99,11 @@ public class GameStateText
 	}
 	
 	
-	//Getters and Setters
+	/*Get tile based off of x and y coordinate
+	 * @param int x
+	 * @param int y
+	 * @return tile
+	 */
 	public Tile getTile(int x, int y)
 	{
 		
@@ -109,33 +121,47 @@ public class GameStateText
 		return t;
 	}
 
-
+	/*gets player x coordinate
+	 * @return playerX
+	 */
 	public int getplayerX() 
 	{
 		return playerX;
 	}
+	/*sets player x coordinate
+	 * @param int playerX
+	 */
 	public void setplayerX(int playerX) 
 	{
 		this.playerX = playerX;
 	}
 
-
+	/*gets player yCoordinate
+	 * @return playerY
+	 */
 	public int getplayerY() 
 	{
 		return playerY;
 	}
+	/*set player y
+	 * @param int playerY
+	 */
 	public void setplayerY(int playerY) 
 	{
 		this.playerY = playerY;
 	}
 
-
+	/*gets width
+	 * @return width
+	 */
 	public int getWidth() 
 	{
 		return width;
 	}
 
-
+	/*gets height
+	 * @return height
+	 */
 	public int getHeight() 
 	{
 		return height;

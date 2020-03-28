@@ -16,7 +16,9 @@ public class KeyMangerText
 	private String LEFT_KEY = "a";
 	private String RIGHT_KEY = "d";
 	
-	//where calculations happen
+	/*Tick method for key manager. 
+	 * 
+	 */
 	public String tick() 
 	{
 		Scanner playerInputReader = new Scanner(System.in);  // Create a Scanner object
@@ -26,7 +28,9 @@ public class KeyMangerText
 		return checkInput();
 	}
 
-	//checks if a certain input is given 
+	/*checks if a certain input is given 
+	*@return String checkInput
+	*/
 	private String checkInput() 
 	{
 		if(playerInput.equals(UP_KEY))

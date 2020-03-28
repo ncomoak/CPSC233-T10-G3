@@ -39,7 +39,9 @@ public class KeyMangerGUI implements KeyListener
 		keys = new boolean[256];
 	}
 
-
+	/*event handler for keyBeing typed.
+	 * 
+	 */
 	public void keyTyped(KeyEvent e) 
 	{
 		

@@ -5,6 +5,11 @@ import java.io.IOException;
 
 public class MazeGenerationText 
 {
+	/*Constructor the MazeGenerationText class
+	 * @String path, path for maze data file
+	 * @int mazeWidth
+	 * @int mazeHeight
+	 */
 	public MazeGenerationText(String path, int mazeWidth, int mazeHeight)
 	{
 		String MazeDataPath =  "res/Worlds/MazeData.txt";

@@ -71,10 +71,14 @@ public abstract class GameObject
 	*/
 	public abstract void render(Graphics g);
 	
-	// TODO Java docs 
+	/*Abstract method die. 
+	 * 
+	 */
 	protected abstract void die();
 	
-	// TODO Java docs 
+	/*hurts character
+	 * @param int damangeAmount
+	 */
 	public void hurt (int damageAmount)
 	{
 		health -= damageAmount;
@@ -90,8 +94,10 @@ public abstract class GameObject
 	
 	
 
-	// TODO Java Docs
-	//if the GameObject is about to collied any other GameObject returns true
+	/*//if the GameObject is about to collied any other GameObject returns true
+	 * @param float xOffset
+	 * @param float yOffset
+	 */
 	public boolean checkGameObjectCollision(float xOffset, float yOffset)
 	{
 		for(GameObject e : handler.getWorld().getGameObjectManger().getGameObjects())
@@ -111,7 +117,10 @@ public abstract class GameObject
 		return false;
 	}
 	
-	// TODO Java docs 
+	/*get bounds for collision
+	 * @param float xOffset
+	 * @param float yOffset
+	 */
 	public Rectangle getCollisionBound(float xOffset, float yOffset)
 	{
 		return new Rectangle((int)(x + xOffset), (int)(y + yOffset), bounds.width, bounds.height);
@@ -200,12 +209,16 @@ public abstract class GameObject
 		this.height = height;
 	}
 	
-	// TODO Java Docs
+	/*Returns true if character is active
+	 * @return boolean
+	 */
 	public boolean isActive() 
 	{
 		return isActive;
 	}
-
+	/*Sets the boolean determining if a character is active
+	 * @param boolean isActive
+	 */
 	public void setActive(boolean isActive) 
 	{
 		this.isActive = isActive;

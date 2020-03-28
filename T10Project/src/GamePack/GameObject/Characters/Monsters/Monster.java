@@ -56,7 +56,9 @@ public class Monster extends Characters
 		checkAttacks();
 	}
 	
-
+	/*checks attacks
+	 * 
+	 */
 	private void checkAttacks() 
 	{
 		attackTimer += System.currentTimeMillis() - lastAttackTimer;
@@ -171,8 +173,10 @@ public class Monster extends Characters
 	
 	
 
-//puts graphic on the screen and centers object 
-	
+
+	/*Overwritten die method. 
+	 * 
+	 */
 	public void die() {
 		
 	}
@@ -182,7 +186,9 @@ public class Monster extends Characters
 //I need to rewrite this, because for the MonsterAI to work, we need to get input from the class instead of the keyboard. 
 //-Rachel.
 	
-	
+	/*getsInput from MonsterAI class. 
+	 * 
+	 */
 	private void getInput()
 	{
 		MonsterAI monsterAI = new MonsterAI(this, lastDirection);
@@ -192,6 +198,10 @@ public class Monster extends Characters
 	
 
 	@Override
+	
+	/*Render Method
+	 * @param Graphics g, graphics context. 
+	 */
 	public void render(Graphics g) {
 		g.drawImage(Assests.enemy,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
 		
@@ -249,11 +259,15 @@ public class Monster extends Characters
 	{
 		this.coinValue = coinValue;
 	}
-	
+	/*gets the last direction the monster has moved.
+	 * @return String lastDirection
+	 */
 	public String getLastDirection() {
 		return lastDirection;
 	}
-	
+	/*sets the last direction monster went
+	 * @param String lastDirection
+	 */
 	private void setLastDirection(String lastDirection) {
 		if(lastDirection.equals("North") || lastDirection.equals("South")){
 			this.lastDirection = lastDirection;

@@ -40,6 +40,10 @@ public class Player extends Characters
 		name = "Player ";
 	}
 	
+	/*Constructor for player class. 
+	 * @param int xCoor
+	 * @param int yCoor
+	 */
 	public Player(int xCoor, int yCoor)
 	{
 		super();
@@ -75,14 +79,18 @@ public class Player extends Characters
 		}
 	}
 	
-	// TODO Java docs 
+	/*TextBased Render Method
+	 * 
+	 */
 	public static void render() 
 	{
 		System.out.println("P");
 	}
 	
 	// Methods
-	
+	/*Determines if the player has touched the portal. 
+	 * 
+	 */
 	public void hasTouchedPortal()
 	{
 		int ID =  handler.getWorld().getTile((int)(x + bounds.width/2) /Tile.TILEWIDTH, (int) (y + bounds.height/2) /Tile.TILEWIDTH).getID();
@@ -96,7 +104,9 @@ public class Player extends Characters
 		}
 	}
 	
-	//TODO Java Doc
+	/*checks if somethings been attacked. 
+	 * 
+	 */
 	private void checkAttacks() 
 	{
 		attackTimer += System.currentTimeMillis() - lastAttackTimer;
@@ -159,7 +169,9 @@ public class Player extends Characters
 		}
 	}
 	
-	//TODO Java Doc
+	/*Overwritten die method.
+	 * 
+	 */
 	@Override
 	protected void die() 
 	{
@@ -202,25 +214,33 @@ public class Player extends Characters
 	}
 	
 	
-	// TODO Java docs 
+	/*gets xCoor
+	 * @return int xCoor
+	 */
 	public int getxCoor() 
 	{
 		return xCoor;
 	}
 
-	// TODO Java docs 
+	/*sets xCoor
+	 * @param int xCoor
+	 */
 	public void setxCoor(int xCoor)
 	{
 		this.xCoor = xCoor;
 	}
 
-	// TODO Java docs 
+	/*gets yCoor
+	 * @return int yCoor
+	 */
 	public int getyCoor()
 	{
 		return yCoor;
 	}
 
-	// TODO Java docs 
+	/*set yCoor
+	 * @param int yCoor
+	 */
 	public void setyCoor(int yCoor) 
 	{
 		this.yCoor = yCoor;

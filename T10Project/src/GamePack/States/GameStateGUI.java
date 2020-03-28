@@ -49,7 +49,7 @@ public class GameStateGUI extends State
 		world.tick();
 	}
 	/*Render's player and world. 
-	*
+	*@param Graphics g
 	*/
 
 	public void render(Graphics g) 

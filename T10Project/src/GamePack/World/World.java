@@ -118,7 +118,9 @@ public class World
 		
 		
 	}
-	
+	/*populates WorldTiles ArrayList
+	 * @param String path, path to world file
+	 */
 	private void populateWorldTiles(String path)
 	{
 		//gets the world file as a String 
@@ -215,13 +217,17 @@ public class World
 		return height;
 	}
 
-	// TODO
+	/*gets gameObjectManager
+	 * @return GameObjectManager gameObjectManager
+	 */
 	public GameObjectManger getGameObjectManger() 
 	{
 		return gameObjectManger;
 	}
 
-	//TODO java docs
+	/*gets world tiles
+	 * @return int[][] worldTiles
+	 */
 	public int[][] getWorldTiles() 
 	{
 		return worldTiles;

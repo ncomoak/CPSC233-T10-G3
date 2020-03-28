@@ -7,16 +7,24 @@ public class MonsterAI{
 	
 	private Monster monster; //During implementation, pass in a world object IDENTICAL TO THE ONE FOR THE GAME. 
 	private String lastDirection;//The last direction that the monster moved in. In order to initialize the monster AI, this is set to 'n'
+	/*Monster AI constructor
+	 * @param Monster monster
+	 */
 	public MonsterAI(Monster monster) {
 		this.monster = monster;
 		setLastDirection("n");
 	}
-	
+	/*MonsterAI constructor
+	 * @param Monster monster
+	 * @param String lastDirection, lastDirection the monster went. 
+	 */
 	public MonsterAI(Monster monster, String lastDirection) {
 		this.monster = monster;
 		setLastDirection(lastDirection);
 	}
-	
+	/*Sets lastDirection
+	 * @return lastDirection
+	 */
 	private void setLastDirection(String lastDirection) {
 		if(lastDirection.equals("North") || lastDirection.equals("South")){
 			this.lastDirection = lastDirection;
@@ -29,12 +37,14 @@ public class MonsterAI{
 		}
 	}
 	
-	
+	/*Moves the monster
+	 * @return String representation of the direction the mosnter moved. 
+	 */
 	public String move() {
-		//System.out.println("Method has been called.");
 		ArrayList<String> possibleDirections = new ArrayList<>();
 		int intMonsterXCoor = (int)(monster.getX()/64 - ((monster.getX())/64) % 1 + 1);
 		int intMonsterYCoor = (int)(monster.getY()/64 + 1);
+		//Gets all possible directions for monster to go. 
 		if(!monster.collionWithTile(intMonsterXCoor, intMonsterYCoor - 2)) {
 			possibleDirections.add("North");
 		}
@@ -48,16 +58,16 @@ public class MonsterAI{
 		if(!monster.collionWithTile(intMonsterXCoor + 1, intMonsterYCoor)) {
 			possibleDirections.add("East");
 		}
-		//System.out.println(intMonsterXCoor + " " + intMonsterYCoor);
-		//System.out.println(possibleDirections.size());
 		Random random = new Random();
 		int direction = 0;
+		//Determines if the monster can go in the same directions its going. 
+		//If so, it goes that way. 
 		if(possibleDirections.contains(lastDirection)) {
 			direction = possibleDirections.indexOf(lastDirection);
-			//System.out.println("Last direction is: " + lastDirection);
 			monster.move();
 			return lastDirection;
 		}
+		//Otherwise, it goes in another, random direction. 
 		else if (possibleDirections.size() != 0) {
 			direction = random.nextInt(possibleDirections.size());
 			if(possibleDirections.get(direction).equals("North")) {
