@@ -211,7 +211,9 @@ public class Game implements Runnable
 		stop();
 
 	}
-	
+	/*Starts Text based version. 
+	 * 
+	 */
 	public void runText()
 	{
 		init();

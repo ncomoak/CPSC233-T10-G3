@@ -16,10 +16,12 @@ public class GameObjectManger
 	
 	private ArrayList<GameObject> gameObjects;
 	
-	// TODO Java docs 
-	//Render Sorter 
+
 	private Comparator<GameObject> renderSorter = new Comparator<GameObject>() 
 	{
+		/*Compares to objects based on when they will be rendered.
+		 * @return int
+		 */
 		public int compare(GameObject a, GameObject b)
 		{
 			if((a.getY() + a.getHeight())  < (b.getY() + b.getHeight()))
@@ -30,7 +32,10 @@ public class GameObjectManger
 		}
 	};
 	
-	// TODO Java docs 
+	/*Constructor for GameObjectManager. 
+	 * @param Handler handler
+	 * @param Player player. 
+	 */
 	public GameObjectManger(Handler handler, Player player)
 	{
 		this.handler = handler;
@@ -42,7 +47,9 @@ public class GameObjectManger
 		
 	}
 	
-	// TODO Java docs 
+	/*Tick method for GameObjectManager Class. 
+	 * 
+	 */
 	public  void tick() 
 	{
 		//Runs through and checks every gameObject 
@@ -60,7 +67,9 @@ public class GameObjectManger
 		gameObjects.sort(renderSorter);
 	} 
 	
-	// TODO Java docs 
+	/*Render method
+	 * @param Graphics g, graphics context. 
+	 */
 	public  void render(Graphics g) 
 	{
 		for(int i = 0; i < gameObjects.size(); i++)
@@ -70,7 +79,9 @@ public class GameObjectManger
 		}
 	}
 	
-	// TODO Java docs 
+	/*Adds Game Object to gameObjects
+	 * @param GameObject newGameObject. 
+	 */
 	public void addGameObject(GameObject newGameObject)
 	{
 		gameObjects.add(newGameObject);
@@ -78,38 +89,50 @@ public class GameObjectManger
 
 	
 	//GETTERS AND SETTERS
-
-	// TODO Java docs 
+	
+	/*Gets handler
+	 * @return handler
+	 */
 	public Handler getHandler()
 	{
 		return handler;
 	}
 
-	// TODO Java docs 
+	/*sets handler
+	 * @param handler
+	 */
 	public void setHandler(Handler handler)
 	{
 		this.handler = handler;
 	}
 
-	// TODO Java docs 
+	/*Gets player
+	 * @return player
+	 */
 	public Player getPlayer() 
 	{
 		return player;
 	}
 
-	// TODO Java docs 
+	/*Sets player
+	 * @param player
+	 */
 	public void setPlayer(Player player)
 	{
 		this.player = player;
 	}
 
-	// TODO Java docs 
+	/*Returns ArrayList of GameObjects
+	 * @return gameObjects
+	 */
 	public ArrayList<GameObject> getGameObjects() 
 	{
 		return gameObjects;
 	}
 
-	// TODO Java docs 
+	/*Sets gameObjects array
+	 * @param ArrayList<GameObject> gameObjects
+	 */
 	public void setGameObjects(ArrayList<GameObject> gameObjects)
 	{
 		this.gameObjects = gameObjects;
