@@ -26,6 +26,9 @@ public abstract class GameObject
 	
 	//If The gameObject is Active (On the Screen)
 	protected boolean isActive = true;
+	
+	//name of the gameObject
+	protected String name = "";
 
 
 	/* Sets up a new GameObject
@@ -75,7 +78,7 @@ public abstract class GameObject
 	public void hurt (int damageAmount)
 	{
 		health -= damageAmount;
-		System.out.println("Hit");
+		System.out.println( name + " has been hit, Current Health Value " + health);
 		
 		// if the GameObject has died
 		if(health <= 0)

@@ -9,3 +9,4 @@ T10 Project TEXT/res/Worlds/MazeData.txt
 *.class
 T10Project/res/Worlds/MazeData.txt
 *.txt
+*.class

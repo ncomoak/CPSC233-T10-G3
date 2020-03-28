@@ -30,7 +30,7 @@ public class Game implements Runnable
 	private Graphics g;
 	
 	//States
-	private State gameState;
+	public State gameState;
 	
 	//Input
 	private KeyMangerGUI keyMangerGUI;

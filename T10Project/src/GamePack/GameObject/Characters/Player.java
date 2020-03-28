@@ -9,6 +9,9 @@ import java.awt.Rectangle;
 import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.GameObject;
+import GamePack.States.GameStateGUI;
+import GamePack.States.State;
+import GamePack.Tiles.Tile;
 import GamePack.gfx.Assests;
 
 // The Player
@@ -33,6 +36,8 @@ public class Player extends Characters
 		bounds.y = 10;
 		bounds.width = (int) (Characters.DEFAULT_CHARACTER_WIDTH/1.5);
 		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT - 20;
+		
+		name = "Player ";
 	}
 	
 	public Player(int xCoor, int yCoor)
@@ -51,6 +56,7 @@ public class Player extends Characters
 		move();
 		handler.getGameCamera().centerOnGameObject(this);
 		checkAttacks();
+		hasTouchedPortal();
 	}
 	
 	
@@ -76,6 +82,19 @@ public class Player extends Characters
 	}
 	
 	// Methods
+	
+	public void hasTouchedPortal()
+	{
+		int ID =  handler.getWorld().getTile((int)(x + bounds.width/2) /Tile.TILEWIDTH, (int) (y + bounds.height/2) /Tile.TILEWIDTH).getID();
+		
+		if(ID == 0 || ID == 3 || ID == 4 || ID == 5 || ID == 6 || ID == 7 || ID == 8 || ID == 9 || ID == 10)
+		{
+			
+			System.out.println("Level UP");
+			handler.getGame().gameState = new GameStateGUI(handler);
+			State.setState(handler.getGame().gameState);
+		}
+	}
 	
 	//TODO Java Doc
 	private void checkAttacks() 
@@ -145,6 +164,8 @@ public class Player extends Characters
 	protected void die() 
 	{
 		System.out.println("YOU DIED");
+		handler.getGame().gameState = new GameStateGUI(handler);
+		State.setState(handler.getGame().gameState);
 	}
 	
 	/*gets the KeyBoard input and decides if the play should move.  

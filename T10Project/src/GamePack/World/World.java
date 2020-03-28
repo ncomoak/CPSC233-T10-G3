@@ -29,7 +29,7 @@ public class World
 	public World(Handler handler, String path)
 	{
 		this.handler = handler;
-		gameObjectManger = new GameObjectManger(handler, new Player(handler, 100,100));
+		gameObjectManger = new GameObjectManger(handler, new Player(handler, 0,0));
 		
 		
 		
@@ -39,15 +39,29 @@ public class World
 		//add enemy. 
 		int testEnemyX = 0;
 		int testEnemyY = 0;
-		if(worldTiles[0][1] == 1){
+<<<<<<< HEAD
+		
+		if(worldTiles[0][1] == 1)
+		{
 			testEnemyX = 100;
 			testEnemyY = 300;
 		}
-		else {
+		else 
+		{
 			testEnemyX = 225;
 			testEnemyY = 100;
+=======
+		for(int x = 0; x < worldTiles.length; x++) {
+			for(int y = 0; y < worldTiles[x].length; y++) {
+				if(worldTiles[x][y] == 6 ) {
+					testEnemyX = x*64;
+					testEnemyY = y*64;
+				}
+			}
+>>>>>>> 3ad2c8b2497363ddc178fc0a747f0c77c3cc0a72
 		}
 		Monster testEnemy = new Monster(handler, testEnemyX, testEnemyY,10,10,10);
+
 		
 		gameObjectManger.addGameObject(testEnemy);
 		gameObjectManger.getPlayer().setX(spawnX);
@@ -139,6 +153,8 @@ public class World
 		
 		if(x < 0 || y < 0 || x >= width || y >= height)
 		{
+			System.out.println("wrong");
+
 			return Tile.dirt;
 		}
 		
@@ -146,6 +162,8 @@ public class World
 		// if the tile is null returns dirt on default
 		if(t == null)
 		{
+			System.out.println("null");
+
 			return Tile.dirt;
 		}
 		return t;

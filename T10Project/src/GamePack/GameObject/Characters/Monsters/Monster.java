@@ -2,9 +2,11 @@ package GamePack.GameObject.Characters.Monsters;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import GamePack.Game;
 import GamePack.Handler;
+import GamePack.GameObject.GameObject;
 import GamePack.GameObject.Characters.Characters;
 import GamePack.gfx.Assests;
 
@@ -16,14 +18,195 @@ import GamePack.gfx.Assests;
 
 //how to follow the player AI 
 
-public class Monster extends Characters {
-
-	
+public class Monster extends Characters 
+{
 	private int lootTable;
 	private int experience;
 	private int coinValue;
 	private String lastDirection = "n";
+
+	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+	private int attackRange = 20;
+
 	
+	/*Constructor for Monster Class. 
+	 * @param int lootTable
+	 * @param int experience
+	 */
+	
+	//This is the real constructor! 
+	
+	public Monster(Handler handler, int xCoor, int yCoor, int lootTable, int experinece, int coinValue) 
+	{
+		super(handler, xCoor, yCoor, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
+		setLootTable(lootTable);
+		setExperience(experience);
+		setCoinValue(coinValue);
+		setLastDirection("n");
+		speed = 1;
+		
+		name = "Monster";
+	}
+
+//gets movement of the monster and moves the monster 
+	public void tick() 
+	{
+		getInput();
+		move();
+		checkAttacks();
+	}
+	
+
+	private void checkAttacks() 
+	{
+		attackTimer += System.currentTimeMillis() - lastAttackTimer;
+		lastAttackTimer =  System.currentTimeMillis();
+		
+		if(attackTimer < attackCooldown)
+		{
+			return;
+		}
+		Rectangle monsterCollisonBounds = getCollisionBound(0, 0);
+		Rectangle attackBounds = new Rectangle();
+		
+		
+		attackBounds.width = attackRange;
+		attackBounds.height = attackRange;
+		
+	
+		//up
+		attackBounds.x = monsterCollisonBounds.x + monsterCollisonBounds.width / 2 - attackRange/2; 
+		attackBounds.y = monsterCollisonBounds.y - attackRange; 
+
+		attackTimer = 0;
+		
+		for(GameObject e : handler.getWorld().getGameObjectManger().getGameObjects())
+		{
+			//if the GameObject it is looking at is it's self. move on to the next GameObject 
+			if(e.equals(this))
+			{
+				continue;
+			}
+			
+			//if the GameObject is about to collied any other GameObject returns true
+			if(e.getCollisionBound(0, 0).intersects(attackBounds))
+			{
+				//deal 1 damage
+				e.hurt(1);
+				return;
+			}
+		}
+
+		
+		//down
+		attackBounds.x = monsterCollisonBounds.x + monsterCollisonBounds.width / 2 - attackRange/2; 
+		attackBounds.y = monsterCollisonBounds.y + attackRange + monsterCollisonBounds.height;
+		
+		attackTimer = 0;
+		
+		for(GameObject e : handler.getWorld().getGameObjectManger().getGameObjects())
+		{
+			//if the GameObject it is looking at is it's self. move on to the next GameObject 
+			if(e.equals(this))
+			{
+				continue;
+			}
+			
+			//if the GameObject is about to collied any other GameObject returns true
+			if(e.getCollisionBound(0, 0).intersects(attackBounds))
+			{
+				//deal 1 damage
+				e.hurt(1);
+				return;
+			}
+		}
+
+		//left
+		attackBounds.x = monsterCollisonBounds.x - attackRange; 
+		attackBounds.y = monsterCollisonBounds.y + monsterCollisonBounds.height / 2 - attackRange/2;
+		
+		attackTimer = 0;
+		
+		for(GameObject e : handler.getWorld().getGameObjectManger().getGameObjects())
+		{
+			//if the GameObject it is looking at is it's self. move on to the next GameObject 
+			if(e.equals(this))
+			{
+				continue;
+			}
+			
+			//if the GameObject is about to collied any other GameObject returns true
+			if(e.getCollisionBound(0, 0).intersects(attackBounds))
+			{
+				//deal 1 damage
+				e.hurt(1);
+				return;
+			}
+		}
+
+		//right
+		attackBounds.x = monsterCollisonBounds.x + monsterCollisonBounds.width; 
+		attackBounds.y = monsterCollisonBounds.y + monsterCollisonBounds.height / 2 - attackRange/2;
+
+		
+		attackTimer = 0;
+		
+		for(GameObject e : handler.getWorld().getGameObjectManger().getGameObjects())
+		{
+			//if the GameObject it is looking at is it's self. move on to the next GameObject 
+			if(e.equals(this))
+			{
+				continue;
+			}
+			
+			//if the GameObject is about to collied any other GameObject returns true
+			if(e.getCollisionBound(0, 0).intersects(attackBounds))
+			{
+				//deal 1 damage
+				e.hurt(1);
+				return;
+			}
+		}
+	}
+	
+	
+
+//puts graphic on the screen and centers object 
+	
+	public void die() 
+	{
+		System.out.println("Monster Died");
+	}
+
+
+//gets the KeyBoard input and decides if the play should move.
+//I need to rewrite this, because for the MonsterAI to work, we need to get input from the class instead of the keyboard. 
+//-Rachel.
+	
+	
+	private void getInput()
+	{
+		MonsterAI monsterAI = new MonsterAI(this, lastDirection);
+		setLastDirection(monsterAI.move());
+		
+	}
+	
+
+	@Override
+	public void render(Graphics g) {
+		g.drawImage(Assests.enemy,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
+		
+		if(Game.devTestMode)
+		{
+			g.setColor(Color.RED);
+			g.drawRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()), (int)(y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width,bounds.height);
+		}
+
+
+		
+	}
+	
+	//Getters and Setters
 
 	/*gets lootTable
 	 * @return lootTable
@@ -82,74 +265,5 @@ public class Monster extends Characters {
 		else {
 			lastDirection = "n";
 		}
-	}
-	
-	
-	
-
-	//I noticed this class doesn't have a constructor, so I'm going to implement one. 
-	//-Rachel. 
-	
-	/*Constructor for Monster Class. 
-	 * @param int lootTable
-	 * @param int experience
-	 */
-	
-	//This is the real constructor! 
-	
-	public Monster(Handler handler, int xCoor, int yCoor, int lootTable, int experinece, int coinValue) 
-	{
-		super(handler, xCoor, yCoor, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
-		setLootTable(lootTable);
-		setExperience(experience);
-		setCoinValue(coinValue);
-		setLastDirection("n");
-		speed = 3;
-		
-	}
-
-//gets movement of the monster and moves the monster 
-	public void tick() 
-	{
-		getInput();
-		move();
-	}
-
-
-//puts graphic on the screen and centers object 
-	
-	public void die() 
-	{
-		System.out.println("Monster Died");
-	}
-
-
-//gets the KeyBoard input and decides if the play should move.
-//I need to rewrite this, because for the MonsterAI to work, we need to get input from the class instead of the keyboard. 
-//-Rachel.
-	
-	
-	private void getInput()
-	{
-		MonsterAI monsterAI = new MonsterAI(this, lastDirection);
-		setLastDirection(monsterAI.move());
-		
-	}
-	
-
-	@Override
-	public void render(Graphics g) {
-		g.drawImage(Assests.enemy,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
-		
-		if(Game.devTestMode)
-		{
-			g.setColor(Color.RED);
-			g.drawRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()), (int)(y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width,bounds.height);
-		}
-
-
-		
-	}
-	
-	
+	}	
 }
