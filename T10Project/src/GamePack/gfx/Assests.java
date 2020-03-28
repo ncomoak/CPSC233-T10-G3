@@ -7,10 +7,12 @@ import java.awt.image.BufferedImage;
 public class Assests 
 {
 	//Player
-		public static BufferedImage player;
+	//public static BufferedImage player;
+	public static BufferedImage[] player_move;
 	
 	//Enemy
-	public static BufferedImage enemy;
+	//public static BufferedImage enemy;
+	public static BufferedImage[] enemy_move;
 	
 	// portal texture 
 	public static BufferedImage portal0;
@@ -30,25 +32,35 @@ public class Assests
 	*/
 	public static void init() 
 	{
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/SpriteSheet/spritesheet.png"));
+		
 		//Player
-		player = ImageLoader.loadImage("/textures/CharacterTexture/playerTextures/Player.png");
+		//player = sheet.crop(92, 0, 25, 48);
+		player_move = new BufferedImage[2];
+		
+		player_move[0] = sheet.crop(118, 0, 27, 48);
+		player_move[1] = sheet.crop(145, 0, 26, 47);
 		
 		//Enemy
-		enemy = ImageLoader.loadImage("/textures/CharacterTexture/enemyTextures/Enemy.png");
+		//enemy = sheet.crop(176, 0, 65, 73);
+		enemy_move = new BufferedImage[2];
+		
+		enemy_move[0] = sheet.crop(244, 0, 50, 74);
+		enemy_move[1] = sheet.crop(297, 0, 44, 73);
 		
 		// portal texture 
-		portal0 =  ImageLoader.loadImage("/textures/portalTexture/portal0.png");
-		portal1 =  ImageLoader.loadImage("/textures/portalTexture/portal1.png");
-		portal2 =  ImageLoader.loadImage("/textures/portalTexture/portal2.png");
-		portal3 =  ImageLoader.loadImage("/textures/portalTexture/portal3.png");
-		portal4 =  ImageLoader.loadImage("/textures/portalTexture/portal4.png");
-		portal5 =  ImageLoader.loadImage("/textures/portalTexture/portal5.png");
-		portal6 =  ImageLoader.loadImage("/textures/portalTexture/portal6.png");
-		portal7 =  ImageLoader.loadImage("/textures/portalTexture/portal7.png");
-		portal8 =  ImageLoader.loadImage("/textures/portalTexture/portal8.png");
+		portal0 =  sheet.crop(0, 73, 44, 44);
+		portal1 =  sheet.crop(45, 73, 44, 44);
+		portal2 =  sheet.crop(90, 73, 44, 44);
+		portal3 =  sheet.crop(0, 118, 44, 44);
+		portal4 =  sheet.crop(45, 118, 44, 44);
+		portal5 =  sheet.crop(90, 118, 44, 44);
+		portal6 =  sheet.crop(0, 163, 44, 44);
+		portal7 =  sheet.crop(45, 163, 44, 44);
+		portal8 =  sheet.crop(90, 163, 44, 44);
 
 
-		dirt =  ImageLoader.loadImage("/textures/tileTexture/Dirt.png");
-		rock =  ImageLoader.loadImage("/textures/tileTexture/Rock.png");
+		dirt =  sheet.crop(0, 0, 44, 44);
+		rock =  sheet.crop(44, 0, 48, 48);
 	}
 }

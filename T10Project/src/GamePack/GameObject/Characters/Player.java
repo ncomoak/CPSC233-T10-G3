@@ -9,11 +9,15 @@ import java.awt.Rectangle;
 import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.GameObject;
+import GamePack.gfx.Animation;
 import GamePack.gfx.Assests;
 
 // The Player
 public class Player extends Characters 
 {
+	//animations
+	private Animation animMove;
+	
 	private int xCoor = -1;
 	private int yCoor = -1;
 	
@@ -33,6 +37,9 @@ public class Player extends Characters
 		bounds.y = 10;
 		bounds.width = (int) (Characters.DEFAULT_CHARACTER_WIDTH/1.5);
 		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT - 20;
+		
+		//animations
+		animMove = new Animation(500, Assests.player_move);
 	}
 	
 	public Player(int xCoor, int yCoor)
@@ -47,6 +54,9 @@ public class Player extends Characters
 	*/
 	public void tick() 
 	{
+		//animations
+		animMove.tick();
+		
 		getInput(); 
 		move();
 		handler.getGameCamera().centerOnGameObject(this);
@@ -60,7 +70,7 @@ public class Player extends Characters
 	*/
 	public void render(Graphics g) 
 	{
-		g.drawImage(Assests.player,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
+		g.drawImage(animMove.getCurrentFrame(),(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
 		
 		if(Game.devTestMode)
 		{
