@@ -39,8 +39,7 @@ public class World
 		//add enemy. 
 		int testEnemyX = 0;
 		int testEnemyY = 0;
-<<<<<<< HEAD
-		
+
 		if(worldTiles[0][1] == 1)
 		{
 			testEnemyX = 100;
@@ -50,18 +49,20 @@ public class World
 		{
 			testEnemyX = 225;
 			testEnemyY = 100;
-=======
-		for(int x = 0; x < worldTiles.length; x++) {
-			for(int y = 0; y < worldTiles[x].length; y++) {
-				if(worldTiles[x][y] == 6 ) {
+		}
+
+		for(int x = 0; x < worldTiles.length; x++) 
+		{
+			for(int y = 0; y < worldTiles[x].length; y++) 
+			{
+				if(worldTiles[x][y] == 6 )
+				{
 					testEnemyX = x*64;
 					testEnemyY = y*64;
 				}
 			}
->>>>>>> 3ad2c8b2497363ddc178fc0a747f0c77c3cc0a72
 		}
 		Monster testEnemy = new Monster(handler, testEnemyX, testEnemyY,10,10,10);
-
 		
 		gameObjectManger.addGameObject(testEnemy);
 		gameObjectManger.getPlayer().setX(spawnX);

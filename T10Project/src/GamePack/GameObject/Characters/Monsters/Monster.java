@@ -36,14 +36,14 @@ public class Monster extends Characters
 	
 	//This is the real constructor! 
 	
-	public Monster(Handler handler, int xCoor, int yCoor, int lootTable, int experinece, int coinValue) 
-	{
+	public Monster(Handler handler, int xCoor, int yCoor, int lootTable, int experinece, int coinValue) {
 		super(handler, xCoor, yCoor, Characters.DEFAULT_CHARACTER_WIDTH, Characters.DEFAULT_CHARACTER_HEIGHT);
 		setLootTable(lootTable);
 		setExperience(experience);
 		setCoinValue(coinValue);
 		setLastDirection("n");
 		speed = 1;
+		setSpeed((float)3.0);
 		
 		name = "Monster";
 	}
@@ -173,9 +173,8 @@ public class Monster extends Characters
 
 //puts graphic on the screen and centers object 
 	
-	public void die() 
-	{
-		System.out.println("Monster Died");
+	public void die() {
+		
 	}
 
 
