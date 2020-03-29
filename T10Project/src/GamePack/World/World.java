@@ -102,6 +102,14 @@ public class World
 		gameObjectManger.render(g);
 	}
 		
+	/*Respawns the player after death 
+	 * 
+	 */
+	public void respawnPlayer()
+	{
+		Player player = new Player(handler, spawnX,spawnY);
+		gameObjectManger.addGameObject(player);
+	}
 	/*Loads world File
 	 * @param String path, path for the worldfile. 
 	 */

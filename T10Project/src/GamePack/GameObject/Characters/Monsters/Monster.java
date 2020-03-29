@@ -93,7 +93,7 @@ public class Monster extends Characters
 			if(e.getCollisionBound(0, 0).intersects(attackBounds))
 			{
 				//deal 1 damage
-				e.hurt(1);
+				e.hurt(2);
 				return;
 			}
 		}
@@ -116,8 +116,8 @@ public class Monster extends Characters
 			//if the GameObject is about to collied any other GameObject returns true
 			if(e.getCollisionBound(0, 0).intersects(attackBounds))
 			{
-				//deal 1 damage
-				e.hurt(1);
+				//deal 2 damage
+				e.hurt(2);
 				return;
 			}
 		}
@@ -139,8 +139,8 @@ public class Monster extends Characters
 			//if the GameObject is about to collied any other GameObject returns true
 			if(e.getCollisionBound(0, 0).intersects(attackBounds))
 			{
-				//deal 1 damage
-				e.hurt(1);
+				//deal 2 damage
+				e.hurt(2);
 				return;
 			}
 		}
@@ -163,8 +163,8 @@ public class Monster extends Characters
 			//if the GameObject is about to collied any other GameObject returns true
 			if(e.getCollisionBound(0, 0).intersects(attackBounds))
 			{
-				//deal 1 damage
-				e.hurt(1);
+				//deal 2 damage
+				e.hurt(2);
 				return;
 			}
 		}

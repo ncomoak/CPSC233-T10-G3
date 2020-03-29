@@ -163,7 +163,7 @@ public class Player extends Characters
 			if(e.getCollisionBound(0, 0).intersects(attackBounds))
 			{
 				//deal 1 damage
-				e.hurt(1);
+				e.hurt(2);
 				return;
 			}
 		}
@@ -176,8 +176,7 @@ public class Player extends Characters
 	protected void die() 
 	{
 		System.out.println("YOU DIED");
-		handler.getGame().gameState = new GameStateGUI(handler);
-		State.setState(handler.getGame().gameState);
+		handler.getWorld().respawnPlayer();
 	}
 	
 	/*gets the KeyBoard input and decides if the play should move.  
