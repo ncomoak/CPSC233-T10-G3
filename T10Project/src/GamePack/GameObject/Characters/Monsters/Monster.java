@@ -8,6 +8,7 @@ import GamePack.Game;
 import GamePack.Handler;
 import GamePack.GameObject.GameObject;
 import GamePack.GameObject.Characters.Characters;
+import GamePack.gfx.Animation;
 import GamePack.gfx.Assests;
 
 // how  attack 
@@ -20,6 +21,9 @@ import GamePack.gfx.Assests;
 
 public class Monster extends Characters 
 {
+	//animations
+	private Animation animEnemyMove;
+	
 	private int lootTable;
 	private int experience;
 	private int coinValue;
@@ -46,11 +50,17 @@ public class Monster extends Characters
 		setSpeed((float)3.0);
 		
 		name = "Monster";
+		
+		//animations
+		animEnemyMove = new Animation(500, Assests.enemy_move);
 	}
 
 //gets movement of the monster and moves the monster 
 	public void tick() 
 	{
+		//animations
+		animEnemyMove.tick();
+		
 		getInput();
 		move();
 		checkAttacks();
@@ -203,7 +213,7 @@ public class Monster extends Characters
 	 * @param Graphics g, graphics context. 
 	 */
 	public void render(Graphics g) {
-		g.drawImage(Assests.enemy,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
+		g.drawImage(animEnemyMove.getCurrentFrame(),(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
 		
 		if(Game.devTestMode)
 		{

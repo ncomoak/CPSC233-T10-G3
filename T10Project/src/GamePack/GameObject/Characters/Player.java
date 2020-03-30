@@ -5,6 +5,7 @@ package GamePack.GameObject.Characters;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 import GamePack.Game;
 import GamePack.Handler;
@@ -12,11 +13,16 @@ import GamePack.GameObject.GameObject;
 import GamePack.States.GameStateGUI;
 import GamePack.States.State;
 import GamePack.Tiles.Tile;
+import GamePack.gfx.Animation;
 import GamePack.gfx.Assests;
 
 // The Player
 public class Player extends Characters 
 {
+	//animations
+	private Animation animMove;
+	private Animation animStill;
+	
 	private int xCoor = -1;
 	private int yCoor = -1;
 	
@@ -38,6 +44,10 @@ public class Player extends Characters
 		bounds.height = Characters.DEFAULT_CHARACTER_HEIGHT - 20;
 		
 		name = "Player ";
+		
+		//animations
+		animMove = new Animation(500, Assests.player_move);
+		animStill = new Animation(500, Assests.player_still);
 	}
 	
 	/*Constructor for player class. 
@@ -56,6 +66,10 @@ public class Player extends Characters
 	*/
 	public void tick() 
 	{
+		//animations
+		animMove.tick();
+		animStill.tick();
+		
 		getInput(); 
 		move();
 		handler.getGameCamera().centerOnGameObject(this);
@@ -70,13 +84,23 @@ public class Player extends Characters
 	*/
 	public void render(Graphics g) 
 	{
-		g.drawImage(Assests.player,(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
+		g.drawImage(getCurrentAnimationFrame(),(int)(x - handler.getGameCamera().getxOffset()), (int)(y - handler.getGameCamera().getyOffset()),width, height, null);
 		
 		if(Game.devTestMode)
 		{
 			g.setColor(Color.BLUE);
 			g.drawRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()), (int)(y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width,bounds.height);
 		}
+	}
+	
+	private BufferedImage getCurrentAnimationFrame()
+	{
+		if(xMove == 0 && yMove == 0)
+		{
+			return animStill.getCurrentFrame();
+		}
+		else
+			return animMove.getCurrentFrame();
 	}
 	
 	/*TextBased Render Method
