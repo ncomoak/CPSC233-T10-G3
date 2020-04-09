@@ -8,7 +8,12 @@ public class Assests
 {
 	//Player
 	public static BufferedImage[] player_still;
-	public static BufferedImage[] player_move;
+	public static BufferedImage[] player_move_right;
+	public static BufferedImage[] player_move_left;
+	public static BufferedImage[] player_attack_right;
+	public static BufferedImage[] player_attack_left;
+	public static BufferedImage[] player_attack_up;
+	
 	
 	//Enemy
 	//public static BufferedImage enemy;
@@ -38,10 +43,26 @@ public class Assests
 		player_still = new BufferedImage[1]; //
 		player_still[0] = sheet.crop(92, 0, 25, 48);		
 				
-		player_move = new BufferedImage[2];
+		player_move_right = new BufferedImage[2];
+		player_move_right[0] = sheet.crop(118, 0, 27, 48);
+		player_move_right[1] = sheet.crop(145, 0, 26, 47);
 		
-		player_move[0] = sheet.crop(118, 0, 27, 48);
-		player_move[1] = sheet.crop(145, 0, 26, 47);
+		player_move_left = new BufferedImage[2];
+		player_move_left[0] = sheet.crop(343, 0, 27, 48);
+		player_move_left[1] = sheet.crop(370, 0, 26, 47);
+		
+		
+		player_attack_right = new BufferedImage[2];
+		player_attack_right[0] = sheet.crop(2, 207, 25, 45);
+		player_attack_right[1] = sheet.crop(31, 207, 29, 45);
+		
+		player_attack_left = new BufferedImage[2];
+		player_attack_left[0] = sheet.crop(89, 207, 25, 45);
+		player_attack_left[1] = sheet.crop(116, 207, 29, 45);
+		
+		player_attack_up = new BufferedImage[1];
+		player_attack_up[0] = sheet.crop(62, 207, 25, 43);
+		
 		
 		//Enemy
 		//enemy = sheet.crop(176, 0, 65, 73);

@@ -20,8 +20,12 @@ import GamePack.gfx.Assests;
 public class Player extends Characters 
 {
 	//animations
-	private Animation animMove;
+	private Animation animMoveRight;
+	private Animation animMoveLeft;
 	private Animation animStill;
+	private Animation animAttackLeft;
+	private Animation animAttackRight;
+	private Animation animAttackUp;
 	
 	private int xCoor = -1;
 	private int yCoor = -1;
@@ -46,8 +50,12 @@ public class Player extends Characters
 		name = "Player ";
 		
 		//animations
-		animMove = new Animation(500, Assests.player_move);
+		animMoveRight = new Animation(500, Assests.player_move_right);
+		animMoveLeft = new Animation(500, Assests.player_move_left);
 		animStill = new Animation(500, Assests.player_still);
+		animAttackRight = new Animation(250, Assests.player_attack_right);
+		animAttackLeft = new Animation(250, Assests.player_attack_left);
+		animAttackUp = new Animation(500, Assests.player_attack_up);
 	}
 	
 	/*Constructor for player class. 
@@ -67,8 +75,12 @@ public class Player extends Characters
 	public void tick() 
 	{
 		//animations
-		animMove.tick();
+		animMoveRight.tick();
+		animMoveLeft.tick();
 		animStill.tick();
+		animAttackLeft.tick();
+		animAttackRight.tick();
+		animAttackUp.tick();
 		
 		getInput(); 
 		move();
@@ -93,15 +105,6 @@ public class Player extends Characters
 		}
 	}
 	
-	private BufferedImage getCurrentAnimationFrame()
-	{
-		if(xMove == 0 && yMove == 0)
-		{
-			return animStill.getCurrentFrame();
-		}
-		else
-			return animMove.getCurrentFrame();
-	}
 	
 	/*TextBased Render Method
 	 * 
@@ -126,6 +129,36 @@ public class Player extends Characters
 			handler.getGame().gameState = new GameStateGUI(handler);
 			State.setState(handler.getGame().gameState);
 		}
+	}
+	
+	/*decides which animation will play
+	 * @return BufferedImage currentFrames
+	 */
+	private BufferedImage getCurrentAnimationFrame()
+	{
+		if (xMove < 0 )
+		{
+			return animMoveLeft.getCurrentFrame();
+		}
+		else if (xMove > 0 || yMove != 0)
+		{
+			return animMoveRight.getCurrentFrame();
+		}
+		else if(handler.getKeyManger().attackRight)
+		{
+			return animAttackRight.getCurrentFrame();
+		}
+		else if(handler.getKeyManger().attackLeft)
+		{
+			return animAttackLeft.getCurrentFrame();
+		}
+		else if(handler.getKeyManger().attackUp)
+		{
+			return animAttackUp.getCurrentFrame();
+		}
+		else 
+			return animStill.getCurrentFrame();
+		
 	}
 	
 	/*checks if somethings been attacked. 

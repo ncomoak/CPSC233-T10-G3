@@ -41,7 +41,9 @@ public class Animation {
 		}
 	}
 	
-	
+	/*gets CurrentFrame
+	 * @return BufferedImage frame[index]
+	 */
 	public BufferedImage getCurrentFrame()
 	{
 		return frames[index];
